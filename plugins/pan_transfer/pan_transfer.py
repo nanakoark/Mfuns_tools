@@ -22,3 +22,4 @@ def getUID(tab):
         print('获取UID失败，可能是网络问题，请尝试重新运行程序 ＞︿＜')
 
 uid = getUID(tab)
+print(tab.cookies())
