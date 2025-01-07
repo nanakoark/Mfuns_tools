@@ -1,8 +1,11 @@
+import time
 from src.createTab import CreateTab
 from src.login import login
 from src.cookies import getCookies, getUserinfo
 from src.file_store import getPath
 from DrissionPage import SessionPage
+from tqdm import tqdm
+from src.mf_print import mfprint
 
 # 创建标签页
 ini_path = None
@@ -15,13 +18,13 @@ login(tab)
 
 # 获取uid
 def getUID(tab):
-    try:
-        userinfo=getUserinfo(tab,getPath(['data','userinfo','userinfo.json'],2))
-        uid = userinfo['user']['id']
-        print(f'你的UID为{uid}，看看有没有登录错了喵~')
-        return uid
-    except:
-        print('获取UID失败，可能是网络问题，请尝试重新运行程序 ＞︿＜')
+    #try:
+    userinfo=getUserinfo(tab,getPath(['data','userinfo','userinfo.json'],2))
+    uid = userinfo['user']['id']
+    print(f'你的UID为{uid}，看看有没有登录错了喵~')
+    return uid
+ #   except:
+  #      print('获取UID失败，可能是网络问题，请尝试重新运行程序 ＞︿＜')
 
 # 该函数用于判断是否以及到底了~
 def end():
@@ -70,25 +73,40 @@ def ispan(pan_url):
 def mv_list(tab):
     video_list = tab.eles('.m-link notlink')
     mfv_list= []
-    for i in video_list:
-        title = i.attr('title')
-        mvurl = i.link
-        if bool(find_mvid(mvurl)) == True:
-            mvid = find_mvid(mvurl)
-            mfvideo = panVideo(mvid,title)
-            mfvideo.getPan_url()
-            mfv_list.append(mfvideo)
-    print('总共检索到{}个视频'.format(len(mfv_list)))
+
+    # 进度条
+    mfprint('开始检索你上传的视频（￣︶￣）↗')
+    with tqdm(total=len(video_list),ncols=75,colour='#a78bfa') as pbar:
+        pbar.set_description('【Mftools】Processing')
+        # 主代码
+        for i in video_list:
+            title = i.attr('title')
+            mvurl = i.link
+            if bool(find_mvid(mvurl)) == True:
+                mvid = find_mvid(mvurl)
+                mfvideo = panVideo(mvid,title)
+                mfvideo.getPan_url()
+                mfv_list.append(mfvideo)
+            time.sleep(0.1)
+            pbar.update(1)
+
+    mfprint('总共检索到{}个视频'.format(len(mfv_list)))
     return mfv_list
 
 
 # 定义从视频列表筛选出使用nya盘外链的视频的函数，需要传入用户视频对象列表，返回筛选完成的视频对象列表
 def pv_list(mfv_list):
     panv_list = []
-    for mfvideo in mfv_list:
-        if ispan(mfvideo.pan_url) == True:
-            panv_list.append(mfvideo)
-    print('其中有{}个使用Nya盘的视频'.format(len(panv_list)))
+    # 进度条
+    mfprint('开始查找使用nya盘外链的视频~')
+    with tqdm(total=len(mfv_list),ncols=75,colour='#a78bfa') as pbar:
+        pbar.set_description('【Mftools】Processing')
+        for mfvideo in mfv_list:
+            if ispan(mfvideo.pan_url) == True:
+                panv_list.append(mfvideo)
+            time.sleep(0.1)
+            pbar.update(1)
+    mfprint('其中有{}个使用Nya盘的视频'.format(len(panv_list)))
     return panv_list
 
 

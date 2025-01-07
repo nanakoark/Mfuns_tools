@@ -8,6 +8,8 @@ def getPath(subpath,dir_num = 1):
         current_Path = os.getcwd()
         parent_Dir = os.path.dirname(current_Path)
         targer_Path = os.path.join(parent_Dir,*subpath)
+    elif dir_num == 0:
+        return os.path.join(*subpath)
     else:
         current_Path = os.getcwd()
         parent_Dir = os.path.dirname(current_Path)
