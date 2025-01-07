@@ -27,7 +27,6 @@ def getUserinfo(tab,path):
         if i['name'] == 'userInfo':
             value = unquote(i['value'])
             json_value = json.loads(value)
-            print(type(json_value))
             with open(path,'w',encoding='UTF8') as userinfo:
                 json.dump(json_value,userinfo,ensure_ascii=False,indent=4)
             return json_value
