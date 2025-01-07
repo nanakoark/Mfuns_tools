@@ -122,6 +122,24 @@ mfv_list = mv_list(tab)
 panv_list = pv_list(mfv_list)
 
 
+# 展示筛选出的视频 | 序号 | mv号 | 标题 |
+mfprint('应该都在下面了喵~')
+mfprint('|{:^3}|{:^6}| 标题'.format('序号','mv号'))
+k = 0
+for video in panv_list:
+    k += 1
+    mfprint('{:^6}{:^8}{}'.format(k,video.mvid,video.title))
+
+print('-'*50)
+mfprint('请输入你希望重新上传以转为直链的视频【序号】或【mv号】')
+mfprint('你可以：')
+mfprint('（1）直接回车或输入0，所有视频都会被尝试转直链')
+mfprint('或者：')
+mfprint('（2）输入单个序号或mv号[例如：1 或 35124]，只有指定的视频会被转为直链')
+mfprint('（3）输入多个序号或mv号，用英文逗号分隔[例如：1,2,3,]')
+mfprint('注意：序号和mv号不能混用，且逗号必须是英文逗号!')
+
+
 
 
 

@@ -24,5 +24,3 @@ def getPath(subpath,dir_num = 1):
 
 
 
-
-
