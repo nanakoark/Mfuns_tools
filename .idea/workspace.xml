@@ -7,7 +7,6 @@
     <list default="true" id="2530f4e7-a1fe-46ca-b773-7627c04adad9" name="更改" comment="添加获取cookies功能">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/pan_transfer/pan_transfer.py" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/pan_transfer/pan_transfer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cookies.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/cookies.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,12 +34,12 @@
     &quot;assignee&quot;: &quot;imouup&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "git@github.com:imouup/Mfuns_tools.git",
-    "accountId": "6bdd7028-e389-4874-a89d-59cd479034f1"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:imouup/Mfuns_tools.git&quot;,
+    &quot;accountId&quot;: &quot;6bdd7028-e389-4874-a89d-59cd479034f1&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
 }</component>
@@ -50,34 +49,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.cookies.executor&quot;: &quot;Run&quot;,
-    &quot;Python.download.executor&quot;: &quot;Run&quot;,
-    &quot;Python.file_store.executor&quot;: &quot;Run&quot;,
-    &quot;Python.login.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;Python.mftest.executor&quot;: &quot;Run&quot;,
-    &quot;Python.pan_transfer.executor&quot;: &quot;Run&quot;,
-    &quot;Python.scratch_7.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test.executor&quot;: &quot;Run&quot;,
-    &quot;Python.water.executor&quot;: &quot;Run&quot;,
-    &quot;Python.切换模式.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.cookies.executor": "Run",
+    "Python.download.executor": "Run",
+    "Python.file_store.executor": "Run",
+    "Python.login.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.mftest.executor": "Run",
+    "Python.pan_transfer.executor": "Debug",
+    "Python.scratch_7.executor": "Run",
+    "Python.test.executor": "Run",
+    "Python.water.executor": "Run",
+    "Python.切换模式.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/新建临时文件&quot;: [
-      &quot;Python&quot;
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/新建临时文件": [
+      "Python"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Project\Mfuns_tools\plugins" />
@@ -106,6 +106,7 @@
       <workItem from="1735999127644" duration="4628000" />
       <workItem from="1736003801690" duration="372000" />
       <workItem from="1736218873845" duration="4209000" />
+      <workItem from="1736233167002" duration="5285000" />
     </task>
     <task id="LOCAL-00001" summary="第一次提交喵！">
       <option name="closed" value="true" />
@@ -134,6 +135,17 @@
     <MESSAGE value="添加获取cookies功能" />
     <option name="LAST_COMMIT_MESSAGE" value="添加获取cookies功能" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/plugins/pan_transfer/pan_transfer.py</url>
+          <line>77</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Mfuns_tools$.coverage" NAME="切换模式 覆盖结果" MODIFIED="1735996488086" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/Mfuns_tools$main.coverage" NAME="main 覆盖结果" MODIFIED="1735999550308" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plugins/pan_transfer" />
@@ -144,7 +156,7 @@
     <SUITE FILE_PATH="coverage/Mfuns_tools$scratch_7.coverage" NAME="scratch_7 覆盖结果" MODIFIED="1736174424883" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
     <SUITE FILE_PATH="coverage/Mfuns_tools$test.coverage" NAME="test 覆盖结果" MODIFIED="1735994126984" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Mfuns_tools$water.coverage" NAME="water 覆盖结果" MODIFIED="1736002736648" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plugins/water" />
-    <SUITE FILE_PATH="coverage/Mfuns_tools$pan_transfer.coverage" NAME="pan_transfer 覆盖结果" MODIFIED="1736222300097" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plugins/pan_transfer" />
+    <SUITE FILE_PATH="coverage/Mfuns_tools$pan_transfer.coverage" NAME="pan_transfer 覆盖结果" MODIFIED="1736238112379" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plugins/pan_transfer" />
     <SUITE FILE_PATH="coverage/Mfuns_tools$mftest.coverage" NAME="mftest 覆盖结果" MODIFIED="1735997347167" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/Mfuns_tools$login.coverage" NAME="login 覆盖结果" MODIFIED="1736173514948" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
   </component>
