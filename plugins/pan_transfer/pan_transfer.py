@@ -38,10 +38,9 @@ class panVideo():
         self.mvid = mvid
         self.title = title
     def getPan_url(self):
-        page = SessionPage()
+        page = SessionPage()   # 在sessionpage中获取视频链接
         page.get(f'https://www.mfuns.net/video/{self.mvid}')
         self.pan_url = page.ele('@property=og:video').attr('content')
-        print(self.pan_url)
     def download(self):
         pass
     def upload(self):
@@ -63,10 +62,34 @@ def find_mvid(url):
 # 定义函数判断是否为网盘外链
 def ispan(pan_url):
     if pan_url[8:21] == 'pan.nyaku.moe' or pan_url[8:24] == 'nyapan.mouup.top':
-        print('find1')
         return True
     else:
         return False
+
+# 定义获取视频列表的函数，需要传入已经完成加载的个人中心-视频页(tab)，返回视频对象组成的列表mfv_list
+def mv_list(tab):
+    video_list = tab.eles('.m-link notlink')
+    mfv_list= []
+    for i in video_list:
+        title = i.attr('title')
+        mvurl = i.link
+        if bool(find_mvid(mvurl)) == True:
+            mvid = find_mvid(mvurl)
+            mfvideo = panVideo(mvid,title)
+            mfvideo.getPan_url()
+            mfv_list.append(mfvideo)
+    print('总共检索到{}个视频'.format(len(mfv_list)))
+    return mfv_list
+
+
+# 定义从视频列表筛选出使用nya盘外链的视频的函数，需要传入用户视频对象列表，返回筛选完成的视频对象列表
+def pv_list(mfv_list):
+    panv_list = []
+    for mfvideo in mfv_list:
+        if ispan(mfvideo.pan_url) == True:
+            panv_list.append(mfvideo)
+    print('其中有{}个使用Nya盘的视频'.format(len(panv_list)))
+    return panv_list
 
 
 # 加载视频下载页
@@ -75,31 +98,10 @@ tab.get(f'https://www.mfuns.net/member/{uid}/videoList')
 while end():
     tab.actions.scroll(delta_y=23333)
 
-# 切换模式
-#tab.change_mode()
 # 获取视频列表
-video_list = tab.eles('.m-link notlink')
-mfv_list= []
-for i in video_list:
-    title = i.attr('title')
-    mvurl = i.link
-    if bool(find_mvid(mvurl)) == True:
-        mvid = find_mvid(mvurl)
-        mfvideo = panVideo(mvid,title)
-        mfvideo.getPan_url()
-        mfv_list.append(mfvideo)
-print('总共检索到{}个视频'.format(len(mfv_list)))
-
-panv_list = []
-for mfvideo in mfv_list:
-    if ispan(mfvideo.pan_url) == True:
-        panv_list.append(mfvideo)
-        print(f'{mfvideo.title}是网盘外链视频')
-
-
-print('其中有{}个使用Nya盘的视频'.format(len(panv_list)))
-
-
+mfv_list = mv_list(tab)
+# 筛选出使用nya盘的视频
+panv_list = pv_list(mfv_list)
 
 
 
