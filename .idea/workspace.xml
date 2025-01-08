@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2530f4e7-a1fe-46ca-b773-7627c04adad9" name="更改" comment="把获取视频列表的语句块写成函数">
-      <change afterPath="$PROJECT_DIR$/plugins/pan_transfer/dev_notebook.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test.py" afterDir="false" />
+    <list default="true" id="2530f4e7-a1fe-46ca-b773-7627c04adad9" name="更改" comment="添加展示筛选完成的视频对象的列表的语句块">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/pan_transfer/dev_notebook.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/pan_transfer/dev_notebook.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/pan_transfer/pan_transfer.py" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/pan_transfer/pan_transfer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/file_store.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/file_store.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/createTab.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/createTab.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +113,9 @@
       <workItem from="1736233167002" duration="8749000" />
       <workItem from="1736248748602" duration="6502000" />
       <workItem from="1736256733675" duration="607000" />
-      <workItem from="1736260367748" duration="2002000" />
+      <workItem from="1736260367748" duration="2109000" />
+      <workItem from="1736312957908" duration="21000" />
+      <workItem from="1736313026992" duration="3164000" />
     </task>
     <task id="LOCAL-00001" summary="第一次提交喵！">
       <option name="closed" value="true" />
@@ -156,7 +157,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736251004856</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="添加展示筛选完成的视频对象的列表的语句块">
+      <option name="closed" value="true" />
+      <created>1736262434423</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1736262434423</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -168,9 +177,19 @@
     <MESSAGE value="增加获取用户视频列表的功能" />
     <MESSAGE value="修复了奇怪的bug，现在能获取所有使用nya盘的视频了" />
     <MESSAGE value="把获取视频列表的语句块写成函数" />
-    <option name="LAST_COMMIT_MESSAGE" value="把获取视频列表的语句块写成函数" />
+    <MESSAGE value="添加展示筛选完成的视频对象的列表的语句块" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加展示筛选完成的视频对象的列表的语句块" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="jupyter-line">
+          <url>notebook://D:/Project/Mfuns_tools/plugins/pan_transfer/dev_notebook.ipynb</url>
+          <line>1</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
         <watch expression="mfvideo.pan_url" />

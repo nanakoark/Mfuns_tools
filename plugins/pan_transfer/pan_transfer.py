@@ -131,7 +131,7 @@ for video in panv_list:
     mfprint('{:^6}{:^8}{}'.format(k,video.mvid,video.title))
 
 print('-'*50)
-mfprint('请输入你希望重新上传以转为直链的视频【序号】或【mv号】')
+mfprint('请输入你希望重新上传以转为直链的视频的【序号】或【mv号】')
 mfprint('你可以：')
 mfprint('（1）直接回车或输入0，所有视频都会被尝试转直链')
 mfprint('或者：')
