@@ -7,6 +7,7 @@ from DrissionPage import SessionPage
 from tqdm import tqdm
 from src.mf_print import mfprint
 import json
+import wget
 
 # 创建标签页
 ini_path = None
@@ -54,6 +55,10 @@ class panVideo():
             self.hasmultiP = False
     def download(self):
         pass
+        # if type(self.pan_url) == str:
+        #
+        # elif type(self.pan_url) == dict:
+
     def upload(self):
         pass
 
@@ -172,11 +177,11 @@ panv_list = pv_list(mfv_list)
 
 # 展示筛选出的视频 | 序号 | mv号 | 标题 |
 mfprint('应该都在下面了喵~')
-mfprint('|{:^3}|{:^6}| 标题'.format('序号','mv号'))
+mfprint('|{:^3}|{:^8}| 标题'.format('序号','mv号'))
 k = 0
 for video in panv_list:
     k += 1
-    mfprint('{:^6}{:^8}{}'.format(k,f'mv{video.mvid}',video.title))
+    mfprint('{:^7}{:<10}{}'.format(k,f'mv{video.mvid}',video.title))
 
 print('-'*50)
 mfprint('请输入你希望重新上传以转为直链的视频的【序号】或【mv号】')
