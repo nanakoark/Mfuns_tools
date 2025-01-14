@@ -6,6 +6,7 @@ from src.file_store import getPath
 from DrissionPage import SessionPage
 from tqdm import tqdm
 from src.mf_print import mfprint
+import json
 
 # 创建标签页
 ini_path = None
@@ -36,18 +37,52 @@ def end():
 
 # 定义外链视频类
 class panVideo():
-    __slots__ = ['mvid','title','pan_url']
+    __slots__ = ['mvid','title','pan_url','hasmultiP']
     def __init__(self,mvid,title):
         self.mvid = mvid
         self.title = title
     def getPan_url(self):
         page = SessionPage()   # 在sessionpage中获取视频链接
         page.get(f'https://www.mfuns.net/video/{self.mvid}')
-        self.pan_url = page.ele('@property=og:video').attr('content')
+        temp_url = page.ele('@property=og:video').attr('content')
+        if bool(page.ele('播放列表')) == True:    # 分开处理单P视频和多P视频
+            self.hasmultiP = True
+            self.pan_url=getMultiP(self.mvid)
+
+        else:
+            self.pan_url = temp_url
+            self.hasmultiP = False
     def download(self):
         pass
     def upload(self):
         pass
+
+
+# 定义函数获取多P视频的视频源url列表
+def getMultiP(mvid):
+    page = SessionPage()
+    page.get(f'https://www.mfuns.net/video/{mvid}')
+    p_dic = {}
+    # 获取标题列表
+    k = 0 # 用于记录p数
+    temp_list = page.ele('.m-video__playlist').texts()
+    for i in temp_list:
+        k +=1
+        weishu = len(str(k)) # 根据p数进行索引
+        p_num = i[1:weishu+1]
+        p_title = i[weishu+1:]
+        p_dic[(p_num,p_title)] = None
+    info_json = json.loads(page.ele('@id=__NUXT_DATA__').text)
+    for j in p_dic:
+        place = 0  # 查找标题附近10行内是否有url
+        title_index = info_json.index(j[1])
+        while place <= 10:
+            item = info_json[title_index-5+place]
+            place += 1
+            if type(item) == str and ispan(item) == True:
+                p_dic[j] = item
+    return p_dic
+
 
 # 定义函数查找mvid
 def find_mvid(url):
@@ -64,8 +99,16 @@ def find_mvid(url):
 
 # 定义函数判断是否为网盘外链
 def ispan(pan_url):
-    if pan_url[8:21] == 'pan.nyaku.moe' or pan_url[8:24] == 'nyapan.mouup.top':
-        return True
+    if type(pan_url) == str:
+        if pan_url[8:21] == 'pan.nyaku.moe' or pan_url[8:24] == 'nyapan.mouup.top':
+            return True
+        else:
+            return False
+    elif type(pan_url) == dict:
+        for k in pan_url:
+            if pan_url[k][8:21] == 'pan.nyaku.moe' or pan_url[k][8:24] == 'nyapan.mouup.top':
+                return True
+        return False
     else:
         return False
 
@@ -101,13 +144,18 @@ def pv_list(mfv_list):
     mfprint('开始查找使用nya盘外链的视频~')
     with tqdm(total=len(mfv_list),ncols=75,colour='#a78bfa') as pbar:
         pbar.set_description('【Mftools】Processing')
+
         for mfvideo in mfv_list:
-            if ispan(mfvideo.pan_url) == True:
+            if type(mfvideo.pan_url) == str and ispan(mfvideo.pan_url) == True:
                 panv_list.append(mfvideo)
+            elif type(mfvideo.pan_url) == dict and ispan(mfvideo.pan_url) == True:
+                panv_list.append(mfvideo)
+
             time.sleep(0.1)
             pbar.update(1)
     mfprint('其中有{}个使用Nya盘的视频'.format(len(panv_list)))
     return panv_list
+
 
 
 # 加载视频下载页
@@ -128,16 +176,18 @@ mfprint('|{:^3}|{:^6}| 标题'.format('序号','mv号'))
 k = 0
 for video in panv_list:
     k += 1
-    mfprint('{:^6}{:^8}{}'.format(k,video.mvid,video.title))
+    mfprint('{:^6}{:^8}{}'.format(k,f'mv{video.mvid}',video.title))
 
 print('-'*50)
 mfprint('请输入你希望重新上传以转为直链的视频的【序号】或【mv号】')
 mfprint('你可以：')
 mfprint('（1）直接回车或输入0，所有视频都会被尝试转直链')
 mfprint('或者：')
-mfprint('（2）输入单个序号或mv号[例如：1 或 35124]，只有指定的视频会被转为直链')
+mfprint('（2）输入单个序号或mv号[例如：1 或 mv35124]，只有指定的视频会被转为直链')
 mfprint('（3）输入多个序号或mv号，用英文逗号分隔[例如：1,2,3,]')
-mfprint('注意：序号和mv号不能混用，且逗号必须是英文逗号!')
+mfprint('注意：序号和mv号可以混用；逗号必须是英文逗号!')
+
+
 
 
 
