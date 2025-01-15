@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2530f4e7-a1fe-46ca-b773-7627c04adad9" name="更改" comment="开始写下载脚本">
+    <list default="true" id="2530f4e7-a1fe-46ca-b773-7627c04adad9" name="更改" comment="完成下载脚本，支持分块多线程下载">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/pan_transfer/dev_notebook.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/pan_transfer/dev_notebook.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/pan_transfer/downloader.py" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/pan_transfer/downloader.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/pan_transfer/pan_transfer.py" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/pan_transfer/pan_transfer.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -135,7 +134,7 @@
       <workItem from="1736738164405" duration="6261000" />
       <workItem from="1736815359934" duration="14007000" />
       <workItem from="1736853195986" duration="5306000" />
-      <workItem from="1736907572008" duration="24450000" />
+      <workItem from="1736907572008" duration="26923000" />
     </task>
     <task id="LOCAL-00001" summary="第一次提交喵！">
       <option name="closed" value="true" />
@@ -201,7 +200,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736858529583</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="完成下载脚本，支持分块多线程下载">
+      <option name="closed" value="true" />
+      <created>1736937096449</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1736937096449</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -216,7 +223,8 @@
     <MESSAGE value="添加展示筛选完成的视频对象的列表的语句块" />
     <MESSAGE value="考虑了多P视频的情况" />
     <MESSAGE value="开始写下载脚本" />
-    <option name="LAST_COMMIT_MESSAGE" value="开始写下载脚本" />
+    <MESSAGE value="完成下载脚本，支持分块多线程下载" />
+    <option name="LAST_COMMIT_MESSAGE" value="完成下载脚本，支持分块多线程下载" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -8,7 +8,7 @@ from tqdm import tqdm
 from src.mf_print import mfprint
 import json
 import plugins.pan_transfer.downloader as downloader
-import ast
+
 
 # 获取全局目录
 path = getPath(['data','pan_transfer','download'],2)
@@ -58,11 +58,14 @@ class panVideo():
             self.pan_url = temp_url
             self.hasmultiP = False
     def download(self):
-        if type(self.pan_url) == str:
+        if self.hasmultiP == False:
             file_path = f'{path}/mv{self.mvid}'
             self.f_path = downloader.main(self.pan_url,file_path,temp_path)
 
-      #  elif type(self.pan_url) == dict:
+        elif self.hasmultiP == True:
+            for pid in self.pan_url:
+                file_path = f'{path}/mv{self.mvid}/{pid}'
+                self.f_path = downloader.main(self.pan_url,file_path,temp_path)
 
     def upload(self):
         pass
@@ -167,6 +170,13 @@ def pv_list(mfv_list):
     return panv_list
 
 
+# 定义根据p_list下载视频的函数
+def getVideo(p_list,panv_list):
+    for i in p_list:
+        v = panv_list[i]
+        v.download()
+
+
 
 # 加载视频下载页
 uid = getUID(tab)
@@ -200,8 +210,24 @@ mfprint('（2）输入单个序号或mv号[例如：1 或 mv35124]，只有指�
 mfprint('（3）输入多个序号或mv号，用英文逗号分隔[例如：1,2,3,]')
 mfprint('注意：序号和mv号可以混用；逗号必须是英文逗号!')
 
-p_range = ast.literal_eval(input('【Mftools】请输入需要转直链的视频: '))
+# 用户输入需要转直链的视频，得到索引的列表p_list
+p_range = input('【Mftools】请输入需要转直链的视频: ')
+p_range = p_range.split(',')
 
+p_list = []
+for item in p_range:
+    if item == '0' or item == '':
+        p_list.append(range(len(panv_list)))
+    elif item[0:2] == 'mv':
+        index = idandmv[item] - 1
+        p_list.append(index)
+    else:
+        index = int(item) -1
+        p_list.append(index)
+
+
+# 下载视频
+getVideo(p_list,panv_list)
 
 
 
