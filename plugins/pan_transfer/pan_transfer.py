@@ -1,13 +1,18 @@
 import time
 from src.createTab import CreateTab
 from src.login import login
-from src.cookies import getCookies, getUserinfo
+from src.cookies import getUserinfo
 from src.file_store import getPath
 from DrissionPage import SessionPage
 from tqdm import tqdm
 from src.mf_print import mfprint
 import json
-import wget
+import plugins.pan_transfer.downloader as downloader
+import ast
+
+# 获取全局目录
+path = getPath(['data','pan_transfer','download'],2)
+temp_path = getPath(['data','pan_transfer','temp'],2)
 
 # 创建标签页
 ini_path = None
@@ -38,7 +43,7 @@ def end():
 
 # 定义外链视频类
 class panVideo():
-    __slots__ = ['mvid','title','pan_url','hasmultiP']
+    __slots__ = ['mvid','title','pan_url','hasmultiP','f_path']
     def __init__(self,mvid,title):
         self.mvid = mvid
         self.title = title
@@ -49,15 +54,15 @@ class panVideo():
         if bool(page.ele('播放列表')) == True:    # 分开处理单P视频和多P视频
             self.hasmultiP = True
             self.pan_url=getMultiP(self.mvid)
-
         else:
             self.pan_url = temp_url
             self.hasmultiP = False
     def download(self):
-        pass
-        # if type(self.pan_url) == str:
-        #
-        # elif type(self.pan_url) == dict:
+        if type(self.pan_url) == str:
+            file_path = f'{path}/mv{self.mvid}'
+            self.f_path = downloader.main(self.pan_url,file_path,temp_path)
+
+      #  elif type(self.pan_url) == dict:
 
     def upload(self):
         pass
@@ -179,10 +184,13 @@ panv_list = pv_list(mfv_list)
 mfprint('应该都在下面了喵~')
 mfprint('|{:^3}|{:^8}| 标题'.format('序号','mv号'))
 k = 0
+idandmv = {} # 使用列表存储序号和mv号的对应关系
 for video in panv_list:
     k += 1
     mfprint('{:^7}{:<10}{}'.format(k,f'mv{video.mvid}',video.title))
+    idandmv[video.mvid] = k
 
+# 输出输入提示
 print('-'*50)
 mfprint('请输入你希望重新上传以转为直链的视频的【序号】或【mv号】')
 mfprint('你可以：')
@@ -192,7 +200,7 @@ mfprint('（2）输入单个序号或mv号[例如：1 或 mv35124]，只有指�
 mfprint('（3）输入多个序号或mv号，用英文逗号分隔[例如：1,2,3,]')
 mfprint('注意：序号和mv号可以混用；逗号必须是英文逗号!')
 
-
+p_range = ast.literal_eval(input('【Mftools】请输入需要转直链的视频: '))
 
 
 
