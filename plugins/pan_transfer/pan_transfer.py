@@ -58,14 +58,19 @@ class panVideo():
             self.pan_url = temp_url
             self.hasmultiP = False
     def download(self):
-        if self.hasmultiP == False:
-            file_path = f'{path}/mv{self.mvid}'
-            self.f_path = downloader.main(self.pan_url,file_path,temp_path)
-
-        elif self.hasmultiP == True:
-            for pid in self.pan_url:
-                file_path = f'{path}/mv{self.mvid}/{pid}'
+        try:
+            mfprint(f'开始下载: mv{self.mvid}  {self.title}')
+            if self.hasmultiP == False:
+                file_path = f'{path}/mv{self.mvid}'
                 self.f_path = downloader.main(self.pan_url,file_path,temp_path)
+
+            elif self.hasmultiP == True:
+                for pid in self.pan_url:
+                    file_path = f'{path}/mv{self.mvid}/{pid}'
+                    self.f_path = downloader.main(self.pan_url,file_path,temp_path)
+            mfprint(f'mv{self.mvid}  {self.title} 下载完成~')
+        except:
+            mfprint(f'mv{self.mvid}  {self.title}下载失败')
 
     def upload(self):
         pass
@@ -198,7 +203,7 @@ idandmv = {} # 使用列表存储序号和mv号的对应关系
 for video in panv_list:
     k += 1
     mfprint('{:^7}{:<10}{}'.format(k,f'mv{video.mvid}',video.title))
-    idandmv[video.mvid] = k
+    idandmv[f'mv{video.mvid}'] = k
 
 # 输出输入提示
 print('-'*50)
