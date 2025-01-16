@@ -222,7 +222,7 @@ p_range = p_range.split(',')
 p_list = []
 for item in p_range:
     if item == '0' or item == '':
-        p_list.append(range(len(panv_list)))
+        p_list=list(range(len(panv_list)))
     elif item[0:2] == 'mv':
         index = idandmv[item] - 1
         p_list.append(index)
