@@ -25,8 +25,12 @@ def byte_range(url,chunk=10):
     header = {
         'mftools': 'letmepass!'
     }
+    proxie = {
+        # 'http': 'http://127.0.0.1:22334',
+        # 'https': 'http://127.0.0.1:22334'
+    }
     try:
-        r = requests.get(url,headers=header,stream=True,timeout=10,allow_redirects=True)
+        r = requests.get(url,headers=header,stream=True,timeout=10,allow_redirects=True,proxies=proxie)
         accept_range = r.headers.get('Accept-Ranges',None)
         filesize = r.headers.get('content-length',None)
         result = []
@@ -64,8 +68,12 @@ def dlpatch(temp_path,url,start,end,pbar):
             'mftools':'letmepass!',
             'Range':f'bytes={start}-{end}'
         }
+        proxie = {
+            # 'http':'http://127.0.0.1:22334',
+            # 'https':'http://127.0.0.1:22334'
+        }
         try:
-            r = requests.get(url,headers=header,stream=True,timeout=10,allow_redirects=True)
+            r = requests.get(url,headers=header,stream=True,timeout=10,allow_redirects=True,proxies=proxie)
             with open(temp_path,'rb+') as f:
                 rec = 0
                 for chunk in r.iter_content(chunk_size=1024*64):
@@ -201,8 +209,9 @@ def main(url_in,path,temp_path,chunk=10):
 #下面是测试用代码块，引用该脚本时请删除或注释该内容 ~(￣▽￣)~*
 
 # url1 = 'https://pan.nyaku.moe/api/v3/file/source/5334/1.mp4' # 不存在的url
-# url2 = 'https://pan.nyaku.moe/f/kx1HZ/%E5%8B%95%E3%81%84%E3%81%A6%E3%81%AA%E3%81%84%E3%81%AE%E3%81%AB%E6%9A%91%E3%81%84%E3%82%88%20%28quilt%20heron%20remix%29%20_%20%EC%B0%8C%EA%B7%B8%EB%9F%AC%EC%A7%84%20%EC%88%98%EC%8B%9C%EB%85%B8%20%EB%A6%AC%EB%AF%B9%EC%8A%A4.mp4'
-# main(url1,
-#      r'C:\Users\nn\Downloads\test',
-#      r'C:\Users\nn\Downloads\temp'
-#      )
+url2 = 'https://pan.nyaku.moe/f/kx1HZ/%E5%8B%95%E3%81%84%E3%81%A6%E3%81%AA%E3%81%84%E3%81%AE%E3%81%AB%E6%9A%91%E3%81%84%E3%82%88%20%28quilt%20heron%20remix%29%20_%20%EC%B0%8C%EA%B7%B8%EB%9F%AC%EC%A7%84%20%EC%88%98%EC%8B%9C%EB%85%B8%20%EB%A6%AC%EB%AF%B9%EC%8A%A4.mp4'
+url3 = 'http://39.103.142.157:22333/f/kx1HZ/%E5%8B%95%E3%81%84%E3%81%A6%E3%81%AA%E3%81%84%E3%81%AE%E3%81%AB%E6%9A%91%E3%81%84%E3%82%88%20%28quilt%20heron%20remix%29%20_%20%EC%B0%8C%EA%B7%B8%EB%9F%AC%EC%A7%84%20%EC%88%98%EC%8B%9C%EB%85%B8%20%EB%A6%AC%EB%AF%B9%EC%8A%A4.mp4'
+main(url3,
+     r'C:\Users\31087\Downloads\test',
+     r'C:\Users\31087\Downloads\temp'
+     )

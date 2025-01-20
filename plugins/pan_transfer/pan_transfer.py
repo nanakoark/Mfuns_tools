@@ -8,6 +8,7 @@ from tqdm import tqdm
 from src.mf_print import mfprint
 import json
 import plugins.pan_transfer.downloader as downloader
+import plugins.pan_transfer.uploader as uploader
 
 
 # 获取全局目录
@@ -43,7 +44,7 @@ def end():
 
 # 定义外链视频类
 class panVideo():
-    __slots__ = ['mvid','title','pan_url','hasmultiP','f_path']
+    __slots__ = ['mvid','title','pan_url','hasmultiP','f_path','downloadSuccessed']
     def __init__(self,mvid,title):
         self.mvid = mvid
         self.title = title
@@ -69,11 +70,14 @@ class panVideo():
                     file_path = f'{path}/mv{self.mvid}/{pid}'
                     self.f_path = downloader.main(self.pan_url,file_path,temp_path)
             mfprint(f'mv{self.mvid}  {self.title} 下载完成~')
-        except:
+            self.downloadSuccessed = True
+        except Exception as e:
+            print(e)
             mfprint(f'mv{self.mvid}  {self.title}下载失败')
+            self.downloadSuccessed = False
 
-    def upload(self):
-        pass
+    # def upload(self):
+    #     pass
 
 
 # 定义函数获取多P视频的视频源url列表
@@ -214,6 +218,7 @@ mfprint('或者：')
 mfprint('（2）输入单个序号或mv号[例如：1 或 mv35124]，只有指定的视频会被转为直链')
 mfprint('（3）输入多个序号或mv号，用英文逗号分隔[例如：1,2,3,]')
 mfprint('注意：序号和mv号可以混用；逗号必须是英文逗号!')
+mfprint('注意：如果某个视频之前已经转过直链但是保留了外链，目前这个脚本还无法识别，非常抱歉 >_<')
 
 # 用户输入需要转直链的视频，得到索引的列表p_list
 p_range = input('【Mftools】请输入需要转直链的视频: ')
@@ -231,11 +236,25 @@ for item in p_range:
         index = int(item) -1
         p_list.append(index)
 
-
 # 下载视频
 getVideo(p_list,panv_list)
 
+# 获取需要上传的视频的mv号列表
+mvid_list = []
+for i in p_list:
+    if panv_list[i].downloadSuccessed == True:
+        mvid_list.append(panv_list[i].mvid)
 
+# 询问是否需要保留外链视频
+retain = input('【Mftools】请问是否需要保留外链视频（直链作为P2） [Y/N](默认保留): ')
+retain_ex_link = True
+if retain == 'Y' or retain == 'y' or retain == '' or retain == None:
+    retain_ex_link = True
+elif retain == 'N' or retain == 'n':
+    retain_ex_link = False
+
+uploader.main(mvid_list,retain_ex_link)
+mfprint('操作完成，请去检查一下有没有问题吧')
 
 
 
