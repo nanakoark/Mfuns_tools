@@ -22,14 +22,22 @@ createtab = CreateTab(ini_path)
 tab = createtab.create()
 
 # 登录
-login(tab)
+times = 0
+while times<=3:
+    try:
+        mfprint('正在登录~')
+        login(tab)
+    except Exception as e:
+        print(e)
+        mfprint('重试中~')
+        times += 1
 
 # 获取uid
 def getUID(tab):
     #try:
     userinfo=getUserinfo(tab,getPath(['data','userinfo','userinfo.json'],2))
     uid = userinfo['user']['id']
-    print(f'你的UID为{uid}，看看有没有登录错了喵~')
+    mfprint(f'你的UID为{uid}，看看有没有登录错了喵~')
     return uid
  #   except:
   #      print('获取UID失败，可能是网络问题，请尝试重新运行程序 ＞︿＜')

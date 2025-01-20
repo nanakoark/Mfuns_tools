@@ -35,7 +35,7 @@ def upload(f_path):
     tab.listen.start(targets='https://api.mfuns.net/v1/contribute/video/upload_complete')
     mfprint('正在上传')
     with tqdm(total=100, ncols=75, colour='#a78bfa') as pbar:
-        pbar.set_description('【Mftools】Processing')
+      #  pbar.set_description('【Mftools】Processing')
         now = tab.ele('.__progress-1cvdmx0-d n-progress n-progress--line n-progress--default',timeout=2).attr('aria-valuenow')
         try:
             while bool(now) == True:
@@ -80,8 +80,8 @@ def delateP(p):
     delate_button.click()
     confirm_button = tab.ele('.__button-1cvdmx0-lsmw n-button n-button--warning-type n-button--small-type')
     confirm_button.click()
-    update_button = tab.ele('.__button-1cvdmx0-dllmp n-button n-button--primary-type n-button--large-type')
-    update_button.click()
+ #   update_button = tab.ele('.__button-1cvdmx0-dllmp n-button n-button--primary-type n-button--large-type')
+ #   update_button.click()
 
 
 # 主代码
@@ -91,19 +91,22 @@ def main(video,retain_external_link = True):
     mfprint(f'开始上传 mv{video.mvid} {video.title}')
     tab.get(f'https://www.mfuns.net/create/video?type=edit&contributeId={conid}')
     if video.hasmultiP == True:
+        k =0 #统计p数
         for f_path in video.f_path:
-            print()
+            k +=1
+            print(f'开始上传P{k}')
             upload(f_path[1])
     else:
         upload(video.f_path)
 
     # 是否保留外链视频
     if retain_external_link == True:
-        update_button = tab.ele('.__button-1cvdmx0-dllmp n-button n-button--primary-type n-button--large-type')
-        update_button.click()
+        pass
+        # update_button = tab.ele('.__button-1cvdmx0-dllmp n-button n-button--primary-type n-button--large-type')
+        # update_button.click()
     elif retain_external_link == False:
-        p_list = tab.eles('.m-video__part-item')
-        for p in p_list:
+        p = tab.ele('.m-video__part-item')
+        while bool(p) == True:
             isPan_url = p.child('.info').child('.type').text
             if isPan_url == '外链':
                 delateP(p)
