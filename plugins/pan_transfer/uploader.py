@@ -87,7 +87,6 @@ def delateP(p):
 # 主代码
 def main(video,retain_external_link = True):
     conid = video.conid
-
     mfprint(f'开始上传 mv{video.mvid} {video.title}')
     tab.get(f'https://www.mfuns.net/create/video?type=edit&contributeId={conid}')
     if video.hasmultiP == True:
@@ -95,7 +94,10 @@ def main(video,retain_external_link = True):
         for f_path in video.f_path:
             k +=1
             print(f'开始上传P{k}')
-            upload(f_path[1])
+            if f_path == 0:
+                print(f'P{k}使用直链，不再上传')
+            else:
+                upload(f_path[1])
     else:
         upload(video.f_path)
 

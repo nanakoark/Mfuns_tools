@@ -27,6 +27,7 @@ while times<=3:
     try:
         mfprint('正在登录~')
         login(tab)
+        times = 233
     except Exception as e:
         print(e)
         mfprint('重试中~')
@@ -37,8 +38,9 @@ def getUID(tab):
     #try:
     userinfo=getUserinfo(tab,getPath(['data','userinfo','userinfo.json'],2))
     uid = userinfo['user']['id']
+    username = userinfo['user']['name']
     mfprint(f'你的UID为{uid}，看看有没有登录错了喵~')
-    return uid
+    return uid,username
  #   except:
   #      print('获取UID失败，可能是网络问题，请尝试重新运行程序 ＞︿＜')
 
@@ -76,8 +78,12 @@ class panVideo():
             elif self.hasmultiP == True:
                 self.f_path = []
                 for pid,title in self.pan_url:
-                    file_path = f'{path}/mv{self.mvid}/{pid}'
-                    self.f_path.append((pid,downloader.main(self.pan_url[(pid,title)],file_path,temp_path)))
+                    if self.pan_url[(pid, title)] == None:
+                        self.f_path.append(0)
+                        continue
+                    else:
+                        file_path = f'{path}/mv{self.mvid}/{pid}'
+                        self.f_path.append((pid,downloader.main(self.pan_url[(pid,title)],file_path,temp_path)))
             mfprint(f'mv{self.mvid}  {self.title} 下载完成~')
             self.downloadSuccessed = True
         except Exception as e:
@@ -93,7 +99,9 @@ class panVideo():
 def getMultiP(mvid):
     page = SessionPage()
     page.get(f'https://www.mfuns.net/video/{mvid}')
+    author = username
     p_dic = {}
+    key_ls = []
     # 获取标题列表
     k = 0 # 用于记录p数
     temp_list = page.ele('.m-video__playlist').texts()
@@ -102,16 +110,32 @@ def getMultiP(mvid):
         weishu = len(str(k)) # 根据p数进行索引
         p_num = i[1:weishu+1]
         p_title = i[weishu+1:]
+        key_ls.append((p_num,p_title))
         p_dic[(p_num,p_title)] = None
     info_json = json.loads(page.ele('@id=__NUXT_DATA__').text)
+    start_index = info_json.index('首页')
+    end_index = info_json.index(author)
+    key_ls_index = 0
+    count = 0
+    for ind in range(start_index,end_index+1):
+        line = info_json[ind]
+        if type(line) == str and line[0:5] == 'https':
+            if ispan(line) == True:
+                if count != 0:
+                    key_ls_index += 1
+                    p_dic[key_ls[key_ls_index]] = line
+                    key_ls_index += 1
+                else:
+                    p_dic[key_ls[key_ls_index]] = line
+                    key_ls_index += 1
+            elif ispan(line) == False:
+                p_dic[key_ls[key_ls_index]] = line
+                count += 1
+
+
     for j in p_dic:
-        place = 0  # 查找标题附近5行内是否有url
-        title_index = info_json.index(j[1])
-        while place <= 5:
-            item = info_json[title_index-3+place]
-            place += 1
-            if type(item) == str and ispan(item) == True:
-                p_dic[j] = item
+        if ispan(p_dic[j]) == False:
+            p_dic[j] = None
     return p_dic
 
 
@@ -137,7 +161,9 @@ def ispan(pan_url):
             return False
     elif type(pan_url) == dict:
         for k in pan_url:
-            if pan_url[k][8:21] == 'pan.nyaku.moe' or pan_url[k][8:24] == 'nyapan.mouup.top':
+            if pan_url[k] == None:
+                continue
+            elif pan_url[k][8:21] == 'pan.nyaku.moe' or pan_url[k][8:24] == 'nyapan.mouup.top':
                 return True
         return False
     else:
@@ -197,7 +223,7 @@ def getVideo(p_list,panv_list):
 
 
 # 加载视频下载页
-uid = getUID(tab)
+uid,username = getUID(tab)
 tab.get(f'https://www.mfuns.net/member/{uid}/videoList')
 while end():
     tab.actions.scroll(delta_y=23333)
