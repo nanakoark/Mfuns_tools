@@ -44,7 +44,7 @@ def end():
 
 # 定义外链视频类
 class panVideo():
-    __slots__ = ['mvid','title','pan_url','hasmultiP','f_path','downloadSuccessed']
+    __slots__ = ['mvid','title','pan_url','hasmultiP','f_path','downloadSuccessed','conid']
     def __init__(self,mvid,title):
         self.mvid = mvid
         self.title = title
@@ -66,9 +66,10 @@ class panVideo():
                 self.f_path = downloader.main(self.pan_url,file_path,temp_path)
 
             elif self.hasmultiP == True:
-                for pid in self.pan_url:
+                self.f_path = []
+                for pid,title in self.pan_url:
                     file_path = f'{path}/mv{self.mvid}/{pid}'
-                    self.f_path = downloader.main(self.pan_url,file_path,temp_path)
+                    self.f_path.append((pid,downloader.main(self.pan_url[(pid,title)],file_path,temp_path)))
             mfprint(f'mv{self.mvid}  {self.title} 下载完成~')
             self.downloadSuccessed = True
         except Exception as e:
@@ -76,8 +77,8 @@ class panVideo():
             mfprint(f'mv{self.mvid}  {self.title}下载失败')
             self.downloadSuccessed = False
 
-    # def upload(self):
-    #     pass
+    def upload(self,rel):
+        uploader.main(self,rel)
 
 
 # 定义函数获取多P视频的视频源url列表
@@ -96,10 +97,10 @@ def getMultiP(mvid):
         p_dic[(p_num,p_title)] = None
     info_json = json.loads(page.ele('@id=__NUXT_DATA__').text)
     for j in p_dic:
-        place = 0  # 查找标题附近10行内是否有url
+        place = 0  # 查找标题附近5行内是否有url
         title_index = info_json.index(j[1])
-        while place <= 10:
-            item = info_json[title_index-5+place]
+        while place <= 5:
+            item = info_json[title_index-3+place]
             place += 1
             if type(item) == str and ispan(item) == True:
                 p_dic[j] = item
@@ -238,12 +239,13 @@ for item in p_range:
 
 # 下载视频
 getVideo(p_list,panv_list)
+print('-'*50)
 
-# 获取需要上传的视频的mv号列表
-mvid_list = []
+# 获取需要上传的视频的mv号和对应的视频元素的字典
+mvid_dict = {}
 for i in p_list:
     if panv_list[i].downloadSuccessed == True:
-        mvid_list.append(panv_list[i].mvid)
+        mvid_dict[panv_list[i].mvid] = panv_list[i]
 
 # 询问是否需要保留外链视频
 retain = input('【Mftools】请问是否需要保留外链视频（直链作为P2） [Y/N](默认保留): ')
@@ -253,7 +255,13 @@ if retain == 'Y' or retain == 'y' or retain == '' or retain == None:
 elif retain == 'N' or retain == 'n':
     retain_ex_link = False
 
-uploader.main(mvid_list,retain_ex_link)
+
+# 上传视频
+conid_dict = uploader.getUploaddict(mvid_dict)
+for i in conid_dict:
+    video = conid_dict[i]
+    video.upload(retain_ex_link)
+
 mfprint('操作完成，请去检查一下有没有问题吧')
 
 

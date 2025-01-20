@@ -26,23 +26,27 @@ def getRe_di(Contribute_list):
         re_di[i['resource_id']] = i['id']
     return re_di
 
-def upload(conid):
+def upload(f_path):
     create = src.createTab.CreateTab(None)
     tab = create.create()
-    tab.get(f'https://www.mfuns.net/create/video?type=edit&contributeId={conid}')
     tab.ele('.__button-1cvdmx0-almmd n-button n-button--default-type n-button--medium-type n-button--block n-button--dashed').click()
     upload_button = tab.ele('.m-upload-video dragger')
-    upload_button.click.to_upload(r"C:\Users\31087\Downloads\ia6oqjQK_動いてないのに暑いよ (quilt heron remix) _ 찌그러진 수시노 리믹스.mp4")
+    upload_button.click.to_upload(f_path)
     tab.listen.start(targets='https://api.mfuns.net/v1/contribute/video/upload_complete')
     mfprint('正在上传')
     with tqdm(total=100, ncols=75, colour='#a78bfa') as pbar:
+        pbar.set_description('【Mftools】Processing')
         now = tab.ele('.__progress-1cvdmx0-d n-progress n-progress--line n-progress--default',timeout=2).attr('aria-valuenow')
-        while bool(now) == True:
-            pbar.n = int(now)
+        try:
+            while bool(now) == True:
+                now = tab.ele('.__progress-1cvdmx0-d n-progress n-progress--line n-progress--default', timeout=2).attr(
+                    'aria-valuenow')
+                pbar.n = int(now)
+                pbar.refresh()
+        except Exception:
+            pbar.n = 100
             pbar.refresh()
-        pbar.n(100)
-        pbar.refresh()
-    tab.listen.wait(3)
+        tab.listen.wait(3)
     mfprint('上传成功')
 
 
@@ -53,8 +57,8 @@ def getAccess_token():
     access_token = getAccessToken(tab)
     return access_token
 
-# 获得mv号和稿件号对应的字典
-def getUploaddict(mvid_list):
+# 获得稿件号与视频对象对应的字典
+def getUploaddict(mvid_dict):
     header = {
         'authorization' : getAccess_token(),
         'user-agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36'
@@ -63,10 +67,11 @@ def getUploaddict(mvid_list):
     ls = get_Contribute_list(header)
     # 获取投稿视频id与mv号关联的字典
     re_di = getRe_di(ls)
-    mvid_conid = dict()
-    for mvid in mvid_list:
-        mvid_conid[mvid] = re_di[mvid]
-    return mvid_conid
+    conid_dict = dict()
+    for mvid in mvid_dict:
+        mvid_dict[mvid].conid = re_di[int(mvid)]
+        conid_dict[re_di[int(mvid)]] = mvid_dict[mvid]
+    return conid_dict
 
 # 删除外链视频
 def delateP(p):
@@ -80,15 +85,22 @@ def delateP(p):
 
 
 # 主代码
-def main(mvid_list,retain_external_link = True):
-    mvid_conid = getUploaddict(mvid_list)
-    for mvid in mvid_conid:
-        conid = mvid_conid[mvid]
-        upload(conid)
+def main(video,retain_external_link = True):
+    conid = video.conid
+
+    mfprint(f'开始上传 mv{video.mvid} {video.title}')
+    tab.get(f'https://www.mfuns.net/create/video?type=edit&contributeId={conid}')
+    if video.hasmultiP == True:
+        for f_path in video.f_path:
+            print()
+            upload(f_path[1])
+    else:
+        upload(video.f_path)
 
     # 是否保留外链视频
     if retain_external_link == True:
-        return None
+        update_button = tab.ele('.__button-1cvdmx0-dllmp n-button n-button--primary-type n-button--large-type')
+        update_button.click()
     elif retain_external_link == False:
         p_list = tab.eles('.m-video__part-item')
         for p in p_list:
