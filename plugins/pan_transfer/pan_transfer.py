@@ -27,6 +27,7 @@ while times<=3:
     try:
         mfprint('正在登录~')
         login(tab)
+        times = 233
     except Exception as e:
         print(e)
         mfprint('重试中~')
@@ -103,15 +104,11 @@ def getMultiP(mvid):
         p_num = i[1:weishu+1]
         p_title = i[weishu+1:]
         p_dic[(p_num,p_title)] = None
-    info_json = json.loads(page.ele('@id=__NUXT_DATA__').text)
-    for j in p_dic:
-        place = 0  # 查找标题附近5行内是否有url
-        title_index = info_json.index(j[1])
-        while place <= 5:
-            item = info_json[title_index-3+place]
-            place += 1
-            if type(item) == str and ispan(item) == True:
-                p_dic[j] = item
+    for j in range(len(temp_list)):
+        page.get(f'https://www.mfuns.net/video/{mvid}?p={j+1}')
+        url = page.ele('.mfunsPlayer-video mfunsPlayer-video-current').link
+        if ispan(url) == True:
+            p_dic[j] = url
     return p_dic
 
 
@@ -139,6 +136,7 @@ def ispan(pan_url):
         for k in pan_url:
             if pan_url[k][8:21] == 'pan.nyaku.moe' or pan_url[k][8:24] == 'nyapan.mouup.top':
                 return True
+
         return False
     else:
         return False
