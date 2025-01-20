@@ -223,6 +223,7 @@ p_list = []
 for item in p_range:
     if item == '0' or item == '':
         p_list=list(range(len(panv_list)))
+        mfprint('将尝试将所有外链视频转为直链')
     elif item[0:2] == 'mv':
         index = idandmv[item] - 1
         p_list.append(index)

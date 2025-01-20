@@ -10,8 +10,14 @@ def getCookies(tab,path):
     :return: None
     '''
     cookies_ls = tab.cookies()
+    ckls = []
+    for cookie_dic in cookies_ls:
+        for key in cookie_dic:
+            cookie_dic[key] = unquote(cookie_dic[key])
+        ckls.append(cookie_dic)
+
     with open(path, 'w', encoding='UTF8') as cookies_json:
-        json.dump(cookies_ls, cookies_json, ensure_ascii=False, indent=4)
+        json.dump(ckls, cookies_json, ensure_ascii=False, indent=4)
 
 
 def getUserinfo(tab,path):
@@ -32,6 +38,12 @@ def getUserinfo(tab,path):
             return json_value
 
 
-
+def getAccessToken(tab):
+    cookie = list(tab.cookies())
+    for item in cookie:
+        if item['name'] == 'access_token':
+            access_token = unquote(item['value'])
+    access_token = access_token.strip('\"')
+    return access_token
 
 
