@@ -251,6 +251,7 @@ def readlog(log_path):
         with open(log_path,'w',encoding='utf-8') as log:
             data = {}
             json.dump(data,log)
+            log.close()
 
     with open(log_path, 'r', encoding='utf-8') as log:
         log_data = json.load(log)
