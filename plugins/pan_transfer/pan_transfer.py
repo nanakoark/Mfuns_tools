@@ -222,8 +222,8 @@ def getVideo(p_list,panv_list):
         v = panv_list[i]
         v.download()
 
-#定义书写log的函数，记录历史操作记录
-def writelog(video,retain_ex_link):
+# 定义书写log的函数，记录历史操作记录
+def writelog(video,retain_ex_link,log_path):
 
     # 判断log文件是否存在
     if os.path.exists(log_path) and os.path.getsize(log_path) > 0:
@@ -245,6 +245,11 @@ def writelog(video,retain_ex_link):
         json.dump(data, log, ensure_ascii=False, indent=4)
 
 
+# 定义读取log的函数
+def readlog(log_path):
+    with open(log_path, 'r', encoding='utf-8') as log:
+        log_data = json.load(log)
+        return log_data
 
 
 
@@ -298,6 +303,45 @@ for item in p_range:
         index = int(item) -1
         p_list.append(index)
 
+# 询问是否需要保留外链视频
+retain = input('【Mftools】请问是否需要保留外链视频（直链作为P2） [Y/N](默认保留): ')
+retain_ex_link = True
+if retain == 'Y' or retain == 'y' or retain == '' or retain == None:
+    retain_ex_link = True
+elif retain == 'N' or retain == 'n':
+    retain_ex_link = False
+
+
+# 遍历p_list，查找是否有之前已经操作过的视频
+log_data = readlog(log_path)
+refunc_di = {}
+for index in p_list:
+    video = panv_list[index]
+    for mvid in log_data:
+        if mvid == video.mvid:
+            refunc_di[index] = video
+
+mfprint('注意：你选中的视频中存在保留了外链的视频：')
+mfprint('|{:^3}|{:^8}| 标题'.format('序号','mv号'))
+for index in refunc_di:
+    video = refunc_di[index]
+    mfprint('{:^7}{:<10}{}'.format(k, f'mv{video.mvid}', video.title))
+
+if retain_ex_link == False:
+    mfprint('请问您希望对它们执行什么操作：')
+    mfprint('A 跳过，不再操作')
+    mfprint('B 不再保留他们的外链')
+    user_input = input('【Mftools】请输入字母A或B: ')
+    if user_input == 'A':
+        for index in refunc_di:
+            p_list.remove(index)
+elif retain_ex_link == True:
+    mfprint('将不再对它们进行操作')
+    for index in refunc_di:
+        p_list.remove(index)
+
+
+
 # 下载视频
 getVideo(p_list,panv_list)
 print('-'*50)
@@ -308,20 +352,13 @@ for i in p_list:
     if panv_list[i].downloadSuccessed == True:
         mvid_dict[panv_list[i].mvid] = panv_list[i]
 
-# 询问是否需要保留外链视频
-retain = input('【Mftools】请问是否需要保留外链视频（直链作为P2） [Y/N](默认保留): ')
-retain_ex_link = True
-if retain == 'Y' or retain == 'y' or retain == '' or retain == None:
-    retain_ex_link = True
-elif retain == 'N' or retain == 'n':
-    retain_ex_link = False
 
 
 # 上传视频
 conid_dict = uploader.getUploaddict(mvid_dict)
 for i in conid_dict:
     video = conid_dict[i]
-    writelog(video,retain_ex_link)
+    writelog(video,retain_ex_link,log_path)
     video.upload(retain_ex_link)
 
 
