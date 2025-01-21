@@ -1,6 +1,8 @@
 import os
 import sys
+# 设置sys.path
 sys.path.append(r'.\src')
+sys.path.append(r'.\site-packages')
 sys.path.append(r'.\plugins\pan_transfer')
 import time
 from src.createTab import CreateTab
@@ -263,7 +265,7 @@ def readlog(log_path):
 
 # 创建标签页
 ini_path = None
-createtab = CreateTab(ini_path)
+createtab = CreateTab(ini_path,dir_num)
 #createtab.headless()
 tab = createtab.create()
 
