@@ -342,10 +342,13 @@ for index in p_list:
 if len(refunc_di) > 0:
     mfprint('注意：以下视频已经转过直链啦，不过当时保留了外链作为分P：')
     mfprint('|{:^3}|{:^8}| 标题'.format('序号','mv号'))
+    k = 1
     for index in refunc_di:
         video = refunc_di[index]
         mfprint('{:^7}{:<10}{}'.format(k, f'mv{video.mvid}', video.title))
+        k +=1
 
+    dl_list = p_list.copy()
     if retain_ex_link == False:
         mfprint('请问您希望对它们执行什么操作：')
         mfprint('A 跳过，不再操作')
@@ -354,21 +357,23 @@ if len(refunc_di) > 0:
         if user_input == 'A':
             for index in refunc_di:
                 p_list.remove(index)
+                dl_list.remove(index)
+
         elif user_input == 'B':
             for index in refunc_di:
+                dl_list.remove(index)
                 panv_list[index].uploaded = True
 
     elif retain_ex_link == True:
         mfprint('将不再对它们进行操作')
         for index in refunc_di:
             p_list.remove(index)
+            dl_list.remove(index)
+
 
 
 # 下载并上传视频
-dl_list = p_list.copy()
-for index in refunc_di:
-    dl_list.remove(index)
-if len(p_list) != 0:
+if len(p_list) > 0:
     # 下载视频
     getVideo(dl_list,panv_list)
     print('-'*50)

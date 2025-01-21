@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2530f4e7-a1fe-46ca-b773-7627c04adad9" name="更改" comment="调整了pan_transfer的语句块位置，为下载添加代理功能">
-      <change afterPath="$PROJECT_DIR$/mftools.py" afterDir="false" />
+    <list default="true" id="2530f4e7-a1fe-46ca-b773-7627c04adad9" name="更改" comment="完成主目录mftools.py">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mftools.py" beforeDir="false" afterPath="$PROJECT_DIR$/mftools.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/pan_transfer/pan_transfer.py" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/pan_transfer/pan_transfer.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -62,7 +61,7 @@
     "Python.main.executor": "Run",
     "Python.mf_print.executor": "Run",
     "Python.mftest.executor": "Run",
-    "Python.mftools.executor": "Run",
+    "Python.mftools.executor": "Debug",
     "Python.pan_transfer.executor": "Run",
     "Python.scratch.executor": "Run",
     "Python.scratch_1.executor": "Run",
@@ -335,7 +334,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737425918936</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="完成主目录mftools.py">
+      <option name="closed" value="true" />
+      <created>1737438910254</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1737438910254</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -353,7 +360,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="添加获取cookies功能" />
     <MESSAGE value="增加获取用户视频列表的功能" />
     <MESSAGE value="修复了奇怪的bug，现在能获取所有使用nya盘的视频了" />
     <MESSAGE value="把获取视频列表的语句块写成函数" />
@@ -378,7 +384,8 @@
     <MESSAGE value="新增对过往已经转过直链但保留了外链的视频的考虑" />
     <MESSAGE value="改了一下说明文字" />
     <MESSAGE value="调整了pan_transfer的语句块位置，为下载添加代理功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="调整了pan_transfer的语句块位置，为下载添加代理功能" />
+    <MESSAGE value="完成主目录mftools.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="完成主目录mftools.py" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -387,6 +394,11 @@
           <url>notebook://D:/Project/Mfuns_tools/plugins/pan_transfer/dev_notebook.ipynb</url>
           <line>1</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/plugins/pan_transfer/pan_transfer.py</url>
+          <line>324</line>
+          <option name="timeStamp" value="36" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -405,7 +417,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Mfuns_tools$scratch_6.coverage" NAME="scratch_6 覆盖结果" MODIFIED="1737357746999" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
-    <SUITE FILE_PATH="coverage/login_py$mftools.coverage" NAME="mftools 覆盖结果" MODIFIED="1737438597082" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/login_py$mftools.coverage" NAME="mftools 覆盖结果" MODIFIED="1737439936255" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/login_py$uploader.coverage" NAME="uploader 覆盖结果" MODIFIED="1737429791418" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plugins/pan_transfer" />
     <SUITE FILE_PATH="coverage/Mfuns_tools$downloader.coverage" NAME="downloader 覆盖结果" MODIFIED="1737365069688" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plugins/pan_transfer" />
     <SUITE FILE_PATH="coverage/Mfuns_tools$login.coverage" NAME="login 覆盖结果" MODIFIED="1736173514948" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
