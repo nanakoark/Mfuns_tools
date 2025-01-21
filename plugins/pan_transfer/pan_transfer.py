@@ -321,7 +321,7 @@ for index in p_list:
         if mvid == video.mvid:
             refunc_di[index] = video
 
-mfprint('注意：你选中的视频中存在保留了外链的视频：')
+mfprint('注意：以下视频已经转过直链啦，不过当时保留了外链作为分P：')
 mfprint('|{:^3}|{:^8}| 标题'.format('序号','mv号'))
 for index in refunc_di:
     video = refunc_di[index]
