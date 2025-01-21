@@ -354,11 +354,11 @@ if len(refunc_di) > 0:
 
 
     if retain_ex_link == False:
-        mfprint('请问您希望对它们执行什么操作：')
+        mfprint('请问您希望对它们执行什么操作(默认为A)：')
         mfprint('A 跳过，不再操作')
         mfprint('B 不再保留他们的外链')
         user_input = input('【Mftools】请输入字母A或B: ')
-        if user_input == 'A':
+        if user_input == 'A' or user_input == '' or user_input == None:
             for index in refunc_di:
                 p_list.remove(index)
                 dl_list.remove(index)

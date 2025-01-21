@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2530f4e7-a1fe-46ca-b773-7627c04adad9" name="更改" comment="修正pan_transfer无法正确剔除已经下载的视频的错误">
+    <list default="true" id="2530f4e7-a1fe-46ca-b773-7627c04adad9" name="更改" comment="修复少量错误">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/pan_transfer/downloader.py" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/pan_transfer/downloader.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/pan_transfer/pan_transfer.py" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/pan_transfer/pan_transfer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/pan_transfer/uploader.py" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/pan_transfer/uploader.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -352,7 +349,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737441300786</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="修复少量错误">
+      <option name="closed" value="true" />
+      <created>1737446687012</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1737446687012</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -370,7 +375,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="修复了奇怪的bug，现在能获取所有使用nya盘的视频了" />
     <MESSAGE value="把获取视频列表的语句块写成函数" />
     <MESSAGE value="添加展示筛选完成的视频对象的列表的语句块" />
     <MESSAGE value="考虑了多P视频的情况" />
@@ -395,7 +399,8 @@
     <MESSAGE value="调整了pan_transfer的语句块位置，为下载添加代理功能" />
     <MESSAGE value="完成主目录mftools.py" />
     <MESSAGE value="修正pan_transfer无法正确剔除已经下载的视频的错误" />
-    <option name="LAST_COMMIT_MESSAGE" value="修正pan_transfer无法正确剔除已经下载的视频的错误" />
+    <MESSAGE value="修复少量错误" />
+    <option name="LAST_COMMIT_MESSAGE" value="修复少量错误" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
