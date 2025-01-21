@@ -1,3 +1,4 @@
+import getpass
 from src.mf_print import mfprint
 
 def login(tab):
@@ -10,7 +11,7 @@ def login(tab):
     else:
         # 获取用户名和密码
         username = input('请输入你的mfuns账号：')
-        password = input("请输入你的密码(密码已隐藏~)：")
+        password = getpass.getpass("请输入你的密码(密码已隐藏~)：")
         # # 最后要记得换成getpass
 
         # 点击“登录”按钮
