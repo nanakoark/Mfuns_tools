@@ -2,6 +2,8 @@ import os
 import subprocess
 import sys
 import time
+sys.path.append(r'.\src')
+sys.path.append(r'.\plugins\pan_transfer')
 from src.mf_print import mfprint
 
 # 启动画面

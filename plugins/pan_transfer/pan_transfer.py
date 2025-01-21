@@ -1,4 +1,7 @@
 import os
+import sys
+sys.path.append(r'.\src')
+sys.path.append(r'.\plugins\pan_transfer')
 import time
 from src.createTab import CreateTab
 from src.login import login
@@ -244,6 +247,11 @@ def writelog(video,retain_ex_link,log_path):
 
 # 定义读取log的函数
 def readlog(log_path):
+    if not os.path.exists(log_path):
+        with open(log_path,'w',encoding='utf-8') as log:
+            data = {}
+            json.dump(data,log)
+
     with open(log_path, 'r', encoding='utf-8') as log:
         log_data = json.load(log)
         return log_data
