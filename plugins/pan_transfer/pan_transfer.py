@@ -232,7 +232,7 @@ def writelog(video,retain_ex_link):
     }
     }
     with open(log_path,'at',encoding='utf-8') as log:
-        json.dump(data,log)
+        json.dump(data,log,ensure_ascii=False,indent=4)
 
 
 
