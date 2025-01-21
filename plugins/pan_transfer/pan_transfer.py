@@ -16,26 +16,14 @@ import plugins.pan_transfer.uploader as uploader
 path = getPath(['data','pan_transfer','download'],2)
 temp_path = getPath(['data','pan_transfer','temp'],2)
 log_path = getPath(['data','pan_transfer','log.json'],2)
+# 读取配置文件
+with open('config.json','r') as config_file:
+    config = json.load(config_file)
+    proxies = config['proxies']
 
-# 创建标签页
-ini_path = None
-createtab = CreateTab(ini_path)
-#createtab.headless()
-tab = createtab.create()
 
-# 登录
-times = 0
-while times<=3:
-    try:
-        mfprint('正在登录~')
-        login(tab)
-        times = 233
-    except Exception as e:
-        print(e)
-        mfprint('重试中~')
-        times += 1
 
-# 获取uid
+# 定义获取uid的函数
 def getUID(tab):
     #try:
     userinfo=getUserinfo(tab,getPath(['data','userinfo','userinfo.json'],2))
@@ -75,7 +63,7 @@ class panVideo():
             mfprint(f'开始下载: mv{self.mvid}  {self.title}')
             if self.hasmultiP == False:
                 file_path = f'{path}/mv{self.mvid}'
-                self.f_path = downloader.main(self.pan_url,file_path,temp_path)
+                self.f_path = downloader.main(self.pan_url,file_path,temp_path,proxie=proxies)
 
             elif self.hasmultiP == True:
                 self.f_path = []
@@ -254,6 +242,26 @@ def readlog(log_path):
 
 
 ## 主代码块
+
+# 创建标签页
+ini_path = None
+createtab = CreateTab(ini_path)
+#createtab.headless()
+tab = createtab.create()
+
+# 登录
+times = 0
+while times<=3:
+    try:
+        mfprint('正在登录~')
+        login(tab)
+        times = 233
+    except Exception as e:
+        print(e)
+        mfprint('重试中~')
+        times += 1
+
+
 # 加载视频下载页
 uid,username = getUID(tab)
 tab.get(f'https://www.mfuns.net/member/{uid}/videoList')
@@ -341,25 +349,26 @@ elif retain_ex_link == True:
         p_list.remove(index)
 
 
+# 下载并上传视频
+if len(p_list) != 0:
+    # 下载视频
+    getVideo(p_list,panv_list)
+    print('-'*50)
 
-# 下载视频
-getVideo(p_list,panv_list)
-print('-'*50)
-
-# 获取需要上传的视频的mv号和对应的视频元素的字典
-mvid_dict = {}
-for i in p_list:
-    if panv_list[i].downloadSuccessed == True:
-        mvid_dict[panv_list[i].mvid] = panv_list[i]
+    # 获取需要上传的视频的mv号和对应的视频元素的字典
+    mvid_dict = {}
+    for i in p_list:
+        if panv_list[i].downloadSuccessed == True:
+            mvid_dict[panv_list[i].mvid] = panv_list[i]
 
 
-
-# 上传视频
-conid_dict = uploader.getUploaddict(mvid_dict)
-for i in conid_dict:
-    video = conid_dict[i]
-    writelog(video,retain_ex_link,log_path)
-    video.upload(retain_ex_link)
+    if len(mvid_dict) != 0:
+        # 上传视频
+        conid_dict = uploader.getUploaddict(mvid_dict)
+        for i in conid_dict:
+            video = conid_dict[i]
+            writelog(video,retain_ex_link,log_path)
+            video.upload(retain_ex_link)
 
 
 mfprint('操作完成，请去检查一下有没有问题吧')

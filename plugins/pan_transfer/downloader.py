@@ -22,14 +22,11 @@ def errfeedback(r):
 
 
 # 定义函数对文件进行分块
-def byte_range(url,chunk=10):
+def byte_range(url,chunk=10,proxie=None):
     header = {
         'mftools': 'letmepass!'
     }
-    proxie = {
-        'http': 'http://127.0.0.1:22334',
-        'https': 'http://127.0.0.1:22334'
-    }
+
     try:
         r = requests.get(url,headers=header,stream=True,timeout=10,allow_redirects=True,proxies=proxie)
         accept_range = r.headers.get('Accept-Ranges',None)
@@ -64,15 +61,12 @@ def byte_range(url,chunk=10):
 
 
 # 定义函数下载分块文件
-def dlpatch(temp_path,url,start,end,pbar):
+def dlpatch(temp_path,url,start,end,pbar,proxie):
         header = {
             'mftools':'letmepass!',
             'Range':f'bytes={start}-{end}'
         }
-        proxie = {
-            'http':'http://127.0.0.1:22334',
-            'https':'http://127.0.0.1:22334'
-        }
+
         try:
             r = requests.get(url,headers=header,stream=True,timeout=10,allow_redirects=True,proxies=proxie)
             with open(temp_path,'rb+') as f:
@@ -146,7 +140,7 @@ def create_folder(path,temp=True):
             return 'Existed'
 
 
-def main(url_in,path,temp_path,chunk=10):
+def main(url_in,path,temp_path,chunk=10,proxie=None):
     '''
     这是下载脚本的主程序
 
@@ -158,7 +152,7 @@ def main(url_in,path,temp_path,chunk=10):
     '''
     temp_name = dt.now().strftime('%Y%m%d%H%M%S')
     url = url_in
-    filesize_ls,filesize = byte_range(url,chunk)
+    filesize_ls,filesize = byte_range(url,chunk,proxie)
 
     # 创建目录
     if os.path.exists(path):
@@ -190,7 +184,7 @@ def main(url_in,path,temp_path,chunk=10):
             j = 0
             for start, end in filesize_ls:
                 tp = tp_ls[j]
-                process.append(p.submit(dlpatch,tp,url,start,end,pbar))
+                process.append(p.submit(dlpatch,tp,url,start,end,pbar,proxie))
                 j += 1
         pbar.update(pbar.total - pbar.n)
         as_completed(process)

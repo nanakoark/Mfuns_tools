@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2530f4e7-a1fe-46ca-b773-7627c04adad9" name="更改" comment="修改log记录函数">
+    <list default="true" id="2530f4e7-a1fe-46ca-b773-7627c04adad9" name="更改" comment="改了一下说明文字">
+      <change afterPath="$PROJECT_DIR$/plugins/pan_transfer/config.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/pan_transfer/downloader.py" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/pan_transfer/downloader.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/pan_transfer/pan_transfer.py" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/pan_transfer/pan_transfer.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -60,7 +62,7 @@
     "Python.main.executor": "Run",
     "Python.mf_print.executor": "Run",
     "Python.mftest.executor": "Run",
-    "Python.pan_transfer.executor": "Debug",
+    "Python.pan_transfer.executor": "Run",
     "Python.scratch.executor": "Run",
     "Python.scratch_1.executor": "Run",
     "Python.scratch_2.executor": "Run",
@@ -138,7 +140,7 @@
       <workItem from="1736907572008" duration="26984000" />
       <workItem from="1736991601370" duration="11581000" />
       <workItem from="1737344486372" duration="32030000" />
-      <workItem from="1737420933851" duration="3600000" />
+      <workItem from="1737420933851" duration="4809000" />
     </task>
     <task id="LOCAL-00001" summary="第一次提交喵！">
       <option name="closed" value="true" />
@@ -308,7 +310,23 @@
       <option name="project" value="LOCAL" />
       <updated>1737423056034</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="新增对过往已经转过直链但保留了外链的视频的考虑">
+      <option name="closed" value="true" />
+      <created>1737424610967</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1737424610967</updated>
+    </task>
+    <task id="LOCAL-00023" summary="改了一下说明文字">
+      <option name="closed" value="true" />
+      <created>1737424764716</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1737424764716</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -349,7 +367,9 @@
     <MESSAGE value="清除敏感信息，重写commit" />
     <MESSAGE value="增加log记录函数" />
     <MESSAGE value="修改log记录函数" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改log记录函数" />
+    <MESSAGE value="新增对过往已经转过直链但保留了外链的视频的考虑" />
+    <MESSAGE value="改了一下说明文字" />
+    <option name="LAST_COMMIT_MESSAGE" value="改了一下说明文字" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -382,7 +402,7 @@
     <SUITE FILE_PATH="coverage/login_py$uploader.coverage" NAME="uploader 覆盖结果" MODIFIED="1737421167864" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plugins/pan_transfer" />
     <SUITE FILE_PATH="coverage/Mfuns_tools$scratch_2.coverage" NAME="scratch_2 覆盖结果" MODIFIED="1736907881883" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
     <SUITE FILE_PATH="coverage/Mfuns_tools$scratch_1.coverage" NAME="scratch_1 覆盖结果" MODIFIED="1736934857218" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
-    <SUITE FILE_PATH="coverage/login_py$pan_transfer.coverage" NAME="pan_transfer 覆盖结果" MODIFIED="1737422106232" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plugins/pan_transfer" />
+    <SUITE FILE_PATH="coverage/login_py$pan_transfer.coverage" NAME="pan_transfer 覆盖结果" MODIFIED="1737425787248" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plugins/pan_transfer" />
     <SUITE FILE_PATH="coverage/Mfuns_tools$downloader.coverage" NAME="downloader 覆盖结果" MODIFIED="1737365069688" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plugins/pan_transfer" />
     <SUITE FILE_PATH="coverage/Mfuns_tools$scratch_5.coverage" NAME="scratch_5 覆盖结果" MODIFIED="1736935398047" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
     <SUITE FILE_PATH="coverage/Mfuns_tools$cookies.coverage" NAME="cookies 覆盖结果" MODIFIED="1736220713355" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
