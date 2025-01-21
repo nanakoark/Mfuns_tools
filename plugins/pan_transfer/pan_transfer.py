@@ -44,10 +44,12 @@ def end():
 
 # 定义外链视频类
 class panVideo():
-    __slots__ = ['mvid','title','pan_url','hasmultiP','f_path','downloadSuccessed','conid']
+    __slots__ = ['mvid','title','pan_url','hasmultiP','f_path','downloadSuccessed','conid','uploaded']
     def __init__(self,mvid,title):
         self.mvid = mvid
         self.title = title
+        self.uploaded = None
+        self.downloadSuccessed = None
     def getPan_url(self):
         page = SessionPage()   # 在sessionpage中获取视频链接
         page.get(f'https://www.mfuns.net/video/{self.mvid}')
@@ -83,6 +85,10 @@ class panVideo():
 
     def upload(self,rel):
         uploader.main(self,rel)
+
+    def onlydelete(self):
+        uploader.onlydelete(self)
+
 
 
 # 定义函数获取多P视频的视频源url列表
@@ -261,6 +267,8 @@ while times<=3:
         mfprint('重试中~')
         times += 1
 
+mfprint('\033[32m请不要关闭弹出的浏览器窗口!\033[0m')
+mfprint('\033[31m脚本不稳定，请随时留意脚本在浏览器中的操作 ╰(￣ω￣ｏ)\033[0m')
 
 # 加载视频下载页
 uid,username = getUID(tab)
@@ -343,6 +351,10 @@ if retain_ex_link == False:
     if user_input == 'A':
         for index in refunc_di:
             p_list.remove(index)
+    elif user_input == 'B':
+        for index in refunc_di:
+            panv_list[index].uploaded = True
+
 elif retain_ex_link == True:
     mfprint('将不再对它们进行操作')
     for index in refunc_di:
@@ -350,25 +362,32 @@ elif retain_ex_link == True:
 
 
 # 下载并上传视频
+dl_list = p_list.copy()
+for index in refunc_di:
+    dl_list.remove(index)
 if len(p_list) != 0:
     # 下载视频
-    getVideo(p_list,panv_list)
+    getVideo(dl_list,panv_list)
     print('-'*50)
 
     # 获取需要上传的视频的mv号和对应的视频元素的字典
     mvid_dict = {}
     for i in p_list:
-        if panv_list[i].downloadSuccessed == True:
+        if panv_list[i].downloadSuccessed == True or panv_list[i].uploaded == True:
             mvid_dict[panv_list[i].mvid] = panv_list[i]
 
 
     if len(mvid_dict) != 0:
-        # 上传视频
+        # 上传视频/删除外链
         conid_dict = uploader.getUploaddict(mvid_dict)
         for i in conid_dict:
             video = conid_dict[i]
-            writelog(video,retain_ex_link,log_path)
-            video.upload(retain_ex_link)
+            if video.uploaded == True:
+                video.onlydelete()
+                writelog(video, retain_ex_link, log_path)
+            else:
+                writelog(video,retain_ex_link,log_path)
+                video.upload(retain_ex_link)
 
 
 mfprint('操作完成，请去检查一下有没有问题吧')

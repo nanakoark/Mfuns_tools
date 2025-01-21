@@ -36,7 +36,7 @@ def upload(f_path):
     mfprint('正在上传')
     with tqdm(total=100, ncols=75, colour='#a78bfa') as pbar:
       #  pbar.set_description('【Mftools】Processing')
-        now = tab.ele('.__progress-1cvdmx0-d n-progress n-progress--line n-progress--default',timeout=2).attr('aria-valuenow')
+        now = tab.ele('.__progress-1cvdmx0-d n-progress n-progress--line n-progress--default',timeout=10).attr('aria-valuenow')
         try:
             while bool(now) == True:
                 now = tab.ele('.__progress-1cvdmx0-d n-progress n-progress--line n-progress--default', timeout=2).attr(
@@ -80,8 +80,8 @@ def delateP(p):
     delate_button.click()
     confirm_button = tab.ele('.__button-1cvdmx0-lsmw n-button n-button--warning-type n-button--small-type')
     confirm_button.click()
- #   update_button = tab.ele('.__button-1cvdmx0-dllmp n-button n-button--primary-type n-button--large-type')
- #   update_button.click()
+    update_button = tab.ele('.__button-1cvdmx0-dllmp n-button n-button--primary-type n-button--large-type')
+    update_button.click()
 
 
 # 主代码
@@ -104,17 +104,27 @@ def main(video,retain_external_link = True):
     # 是否保留外链视频
     if retain_external_link == True:
         pass
-        # update_button = tab.ele('.__button-1cvdmx0-dllmp n-button n-button--primary-type n-button--large-type')
-        # update_button.click()
+        update_button = tab.ele('.__button-1cvdmx0-dllmp n-button n-button--primary-type n-button--large-type')
+        update_button.click()
     elif retain_external_link == False:
-        p = tab.ele('.m-video__part-item')
-        while bool(p) == True:
+        ps = tab.eles('.m-video__part-item')
+        for pt in range(len(ps)):
+            p = tab.ele('.m-video__part-item')
             isPan_url = p.child('.info').child('.type').text
             if isPan_url == '外链':
                 delateP(p)
 
-
-
+# 定义仅删除外链分P函数
+def onlydelete(video):
+    conid = video.conid
+    mfprint(f'删除外链分P mv{video.mvid} {video.title}')
+    tab.get(f'https://www.mfuns.net/create/video?type=edit&contributeId={conid}')
+    ps = tab.eles('.m-video__part-item')
+    for pt in range(len(ps)):
+        p = tab.ele('.m-video__part-item')
+        isPan_url = p.child('.info').child('.type').text
+        if isPan_url == '外链':
+            delateP(p)
 
 
 

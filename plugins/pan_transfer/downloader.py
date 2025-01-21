@@ -22,7 +22,7 @@ def errfeedback(r):
 
 
 # 定义函数对文件进行分块
-def byte_range(url,chunk=10,proxie=None):
+def byte_range(url,chunk=5,proxie=None):
     header = {
         'mftools': 'letmepass!'
     }
