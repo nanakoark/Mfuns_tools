@@ -3,6 +3,7 @@ import subprocess
 import sys
 import time
 sys.path.append(r'.\src')
+sys.path.append(r'.\site-packages')
 sys.path.append(r'.\plugins\pan_transfer')
 from src.mf_print import mfprint
 
@@ -24,8 +25,9 @@ print('Version:0.1.0')
 # 设置工作目录为当前py文件所在目录
 currentdir = os.path.dirname(os.path.abspath(__file__))
 os.chdir(currentdir)
-env = os.environ.copy()
-env['PYTHONPATH'] = currentdir #设置环境变量
+# 设置环境变量，添加src目录和pan_transfer目录
+env = dict(sys.environ)
+env['PYTHONPATH'] = ":".join(sys.path) #设置环境变量
 
 
 # 检查是否正在使用虚拟环境

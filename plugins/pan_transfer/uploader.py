@@ -1,11 +1,10 @@
 import time
-
 from tqdm import tqdm
 import src.createTab
 from DrissionPage import SessionPage
 from src.cookies import getCookies,getAccessToken
 from src.file_store import getPath
-from src.mf_print import mfprint
+from mf_print import mfprint
 
 
 create = src.createTab.CreateTab(None)
