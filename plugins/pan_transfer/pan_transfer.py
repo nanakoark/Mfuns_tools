@@ -13,11 +13,13 @@ import plugins.pan_transfer.uploader as uploader
 
 
 # 获取全局目录
-path = getPath(['data','pan_transfer','download'],2)
-temp_path = getPath(['data','pan_transfer','temp'],2)
-log_path = getPath(['data','pan_transfer','log.json'],2)
+dir_num = 0 # 当在主目录运行本脚本时请设置为0,在当前目录运行时请设置为2
+path = getPath(['data','pan_transfer','download'],dir_num)
+temp_path = getPath(['data','pan_transfer','temp'],dir_num)
+log_path = getPath(['data','pan_transfer','log.json'],dir_num)
+config_path = getPath(['plugins','pan_transfer','config.json'],dir_num)
 # 读取配置文件
-with open('config.json','r') as config_file:
+with open(config_path,'r') as config_file:
     config = json.load(config_file)
     proxies = config['proxies']
 
@@ -26,7 +28,7 @@ with open('config.json','r') as config_file:
 # 定义获取uid的函数
 def getUID(tab):
     #try:
-    userinfo=getUserinfo(tab,getPath(['data','userinfo','userinfo.json'],2))
+    userinfo=getUserinfo(tab,getPath(['data','userinfo','userinfo.json'],dir_num))
     uid = userinfo['user']['id']
     username = userinfo['user']['name']
     mfprint(f'你的UID为{uid}，看看有没有登录错了喵~')
@@ -337,28 +339,29 @@ for index in p_list:
         if mvid == video.mvid:
             refunc_di[index] = video
 
-mfprint('注意：以下视频已经转过直链啦，不过当时保留了外链作为分P：')
-mfprint('|{:^3}|{:^8}| 标题'.format('序号','mv号'))
-for index in refunc_di:
-    video = refunc_di[index]
-    mfprint('{:^7}{:<10}{}'.format(k, f'mv{video.mvid}', video.title))
+if len(refunc_di) > 0:
+    mfprint('注意：以下视频已经转过直链啦，不过当时保留了外链作为分P：')
+    mfprint('|{:^3}|{:^8}| 标题'.format('序号','mv号'))
+    for index in refunc_di:
+        video = refunc_di[index]
+        mfprint('{:^7}{:<10}{}'.format(k, f'mv{video.mvid}', video.title))
 
-if retain_ex_link == False:
-    mfprint('请问您希望对它们执行什么操作：')
-    mfprint('A 跳过，不再操作')
-    mfprint('B 不再保留他们的外链')
-    user_input = input('【Mftools】请输入字母A或B: ')
-    if user_input == 'A':
+    if retain_ex_link == False:
+        mfprint('请问您希望对它们执行什么操作：')
+        mfprint('A 跳过，不再操作')
+        mfprint('B 不再保留他们的外链')
+        user_input = input('【Mftools】请输入字母A或B: ')
+        if user_input == 'A':
+            for index in refunc_di:
+                p_list.remove(index)
+        elif user_input == 'B':
+            for index in refunc_di:
+                panv_list[index].uploaded = True
+
+    elif retain_ex_link == True:
+        mfprint('将不再对它们进行操作')
         for index in refunc_di:
             p_list.remove(index)
-    elif user_input == 'B':
-        for index in refunc_di:
-            panv_list[index].uploaded = True
-
-elif retain_ex_link == True:
-    mfprint('将不再对它们进行操作')
-    for index in refunc_di:
-        p_list.remove(index)
 
 
 # 下载并上传视频

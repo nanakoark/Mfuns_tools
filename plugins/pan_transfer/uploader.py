@@ -43,6 +43,7 @@ def upload(f_path):
                     'aria-valuenow')
                 pbar.n = int(now)
                 pbar.refresh()
+                mfprint('请稍等片刻，正在确认是否已经上传完成~')
         except Exception:
             pbar.n = 100
             pbar.refresh()
