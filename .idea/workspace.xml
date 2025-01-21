@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2530f4e7-a1fe-46ca-b773-7627c04adad9" name="更改" comment="修改写入log的函数，增加创建文件功能">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="2530f4e7-a1fe-46ca-b773-7627c04adad9" name="更改" comment="修改README">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mftools.py" beforeDir="false" afterPath="$PROJECT_DIR$/mftools.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/pan_transfer/pan_transfer.py" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/pan_transfer/pan_transfer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/pan_transfer/uploader.py" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/pan_transfer/uploader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/createTab.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/createTab.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,7 +154,7 @@
       <workItem from="1737420933851" duration="10298000" />
       <workItem from="1737452780558" duration="1938000" />
       <workItem from="1737462634919" duration="3250000" />
-      <workItem from="1737466166684" duration="181000" />
+      <workItem from="1737466166684" duration="1174000" />
     </task>
     <task id="LOCAL-00001" summary="第一次提交喵！">
       <option name="closed" value="true" />
@@ -404,7 +404,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737463138871</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="修改README">
+      <option name="closed" value="true" />
+      <created>1737466370859</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1737466370859</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -422,7 +430,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="开始写下载脚本" />
     <MESSAGE value="完成下载脚本，支持分块多线程下载" />
     <MESSAGE value="完成部分panVideo类内的download函数，多p部分未完成" />
     <MESSAGE value="修复" />
@@ -447,7 +454,8 @@
     <MESSAGE value="添加README" />
     <MESSAGE value="修改README,增加requirements.txt" />
     <MESSAGE value="修改写入log的函数，增加创建文件功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改写入log的函数，增加创建文件功能" />
+    <MESSAGE value="修改README" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改README" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
