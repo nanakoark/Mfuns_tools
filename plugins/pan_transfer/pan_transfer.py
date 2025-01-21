@@ -14,6 +14,7 @@ import plugins.pan_transfer.uploader as uploader
 # 获取全局目录
 path = getPath(['data','pan_transfer','download'],2)
 temp_path = getPath(['data','pan_transfer','temp'],2)
+log_path = getPath(['data','pan_transfer','log'],2)
 
 # 创建标签页
 ini_path = None
@@ -220,8 +221,24 @@ def getVideo(p_list,panv_list):
         v = panv_list[i]
         v.download()
 
+#定义书写log的函数，记录历史操作记录
+def writelog(video,retain_ex_link):
+    data = {video.mvid:
+        {
+        'mvid':video.mvid,
+        'conid':video.conid,
+        'title':video.title,
+        'retain_ex_link':retain_ex_link
+    }
+    }
+    with open(log_path,'at',encoding='utf-8') as log:
+        json.dump(data,log)
 
 
+
+
+
+## 主代码块
 # 加载视频下载页
 uid,username = getUID(tab)
 tab.get(f'https://www.mfuns.net/member/{uid}/videoList')
@@ -294,7 +311,9 @@ elif retain == 'N' or retain == 'n':
 conid_dict = uploader.getUploaddict(mvid_dict)
 for i in conid_dict:
     video = conid_dict[i]
+    writelog(video,retain_ex_link)
     video.upload(retain_ex_link)
+
 
 mfprint('操作完成，请去检查一下有没有问题吧')
 

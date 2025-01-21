@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2530f4e7-a1fe-46ca-b773-7627c04adad9" name="更改" comment="撤回对getMultiP函数的修改">
+    <list default="true" id="2530f4e7-a1fe-46ca-b773-7627c04adad9" name="更改" comment="清除敏感信息，重写commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/pan_transfer/pan_transfer.py" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/pan_transfer/pan_transfer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/pan_transfer/uploader.py" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/pan_transfer/uploader.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +60,7 @@
     "Python.main.executor": "Run",
     "Python.mf_print.executor": "Run",
     "Python.mftest.executor": "Run",
-    "Python.pan_transfer.executor": "Debug",
+    "Python.pan_transfer.executor": "Run",
     "Python.scratch.executor": "Run",
     "Python.scratch_1.executor": "Run",
     "Python.scratch_2.executor": "Run",
@@ -139,6 +138,7 @@
       <workItem from="1736907572008" duration="26984000" />
       <workItem from="1736991601370" duration="11581000" />
       <workItem from="1737344486372" duration="32030000" />
+      <workItem from="1737420933851" duration="874000" />
     </task>
     <task id="LOCAL-00001" summary="第一次提交喵！">
       <option name="closed" value="true" />
@@ -284,7 +284,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737379527869</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="清除敏感信息，重写commit">
+      <option name="closed" value="true" />
+      <created>1737421008743</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1737421008743</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -322,7 +330,8 @@
     <MESSAGE value="为登录模块添加重试机制" />
     <MESSAGE value="重写pan_transfer.py中的getMultiP函数" />
     <MESSAGE value="撤回对getMultiP函数的修改" />
-    <option name="LAST_COMMIT_MESSAGE" value="撤回对getMultiP函数的修改" />
+    <MESSAGE value="清除敏感信息，重写commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="清除敏感信息，重写commit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -331,11 +340,6 @@
           <url>notebook://D:/Project/Mfuns_tools/plugins/pan_transfer/dev_notebook.ipynb</url>
           <line>1</line>
           <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/plugins/pan_transfer/pan_transfer.py</url>
-          <line>275</line>
-          <option name="timeStamp" value="30" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -354,11 +358,13 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Mfuns_tools$scratch_6.coverage" NAME="scratch_6 覆盖结果" MODIFIED="1737357746999" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
-    <SUITE FILE_PATH="coverage/Mfuns_tools$scratch.coverage" NAME="scratch 覆盖结果" MODIFIED="1736741846315" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
     <SUITE FILE_PATH="coverage/Mfuns_tools$pan_transfer.coverage" NAME="pan_transfer 覆盖结果" MODIFIED="1737382381116" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plugins/pan_transfer" />
+    <SUITE FILE_PATH="coverage/Mfuns_tools$scratch.coverage" NAME="scratch 覆盖结果" MODIFIED="1736741846315" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
     <SUITE FILE_PATH="coverage/Mfuns_tools$.coverage" NAME="切换模式 覆盖结果" MODIFIED="1735996488086" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/login_py$uploader.coverage" NAME="uploader 覆盖结果" MODIFIED="1737421167864" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plugins/pan_transfer" />
     <SUITE FILE_PATH="coverage/Mfuns_tools$scratch_2.coverage" NAME="scratch_2 覆盖结果" MODIFIED="1736907881883" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
     <SUITE FILE_PATH="coverage/Mfuns_tools$scratch_1.coverage" NAME="scratch_1 覆盖结果" MODIFIED="1736934857218" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
+    <SUITE FILE_PATH="coverage/login_py$pan_transfer.coverage" NAME="pan_transfer 覆盖结果" MODIFIED="1737421182175" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plugins/pan_transfer" />
     <SUITE FILE_PATH="coverage/Mfuns_tools$downloader.coverage" NAME="downloader 覆盖结果" MODIFIED="1737365069688" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plugins/pan_transfer" />
     <SUITE FILE_PATH="coverage/Mfuns_tools$scratch_5.coverage" NAME="scratch_5 覆盖结果" MODIFIED="1736935398047" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
     <SUITE FILE_PATH="coverage/Mfuns_tools$cookies.coverage" NAME="cookies 覆盖结果" MODIFIED="1736220713355" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
