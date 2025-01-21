@@ -21,6 +21,9 @@
 
 ## ✨如何使用
 
+### 开始前：
+按照[这里的指引](https://github.com/imouup/Mfuns_tools/blob/main/README.md)准备好Mftools
+
 
 
 ### 1.Mftools脚本成功运行后输入序号1，选择`网盘外链转直链`
