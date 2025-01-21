@@ -1,3 +1,4 @@
+import os
 import time
 from src.createTab import CreateTab
 from src.login import login
@@ -14,7 +15,7 @@ import plugins.pan_transfer.uploader as uploader
 # 获取全局目录
 path = getPath(['data','pan_transfer','download'],2)
 temp_path = getPath(['data','pan_transfer','temp'],2)
-log_path = getPath(['data','pan_transfer','log'],2)
+log_path = getPath(['data','pan_transfer','log.json'],2)
 
 # 创建标签页
 ini_path = None
@@ -223,16 +224,25 @@ def getVideo(p_list,panv_list):
 
 #定义书写log的函数，记录历史操作记录
 def writelog(video,retain_ex_link):
-    data = {video.mvid:
-        {
-        'mvid':video.mvid,
-        'conid':video.conid,
-        'title':video.title,
-        'retain_ex_link':retain_ex_link
-    }
-    }
-    with open(log_path,'at',encoding='utf-8') as log:
-        json.dump(data,log,ensure_ascii=False,indent=4)
+
+    # 判断log文件是否存在
+    if os.path.exists(log_path) and os.path.getsize(log_path) > 0:
+        with open(log_path, 'r', encoding='utf-8') as log:
+            data = json.load(log)
+
+    else:
+        data = {}
+
+        # 注意：mvid是字符串，conid是整数
+    data[video.mvid] ={
+            'mvid': video.mvid,
+            'conid': video.conid,
+            'title': video.title,
+            'retain_ex_link': retain_ex_link
+        }
+
+    with open(log_path, 'w', encoding='utf-8') as log:
+        json.dump(data, log, ensure_ascii=False, indent=4)
 
 
 
