@@ -77,12 +77,13 @@ class panVideo():
                         continue
                     else:
                         file_path = f'{path}/mv{self.mvid}/{pid}'
-                        self.f_path.append((pid,downloader.main(self.pan_url[(pid,title)],file_path,temp_path)))
+                        self.f_path.append((pid,downloader.main(self.pan_url[(pid,title)],file_path,temp_path,proxie=proxies)))
             mfprint(f'mv{self.mvid}  {self.title} 下载完成~')
             self.downloadSuccessed = True
         except Exception as e:
             print(e)
             mfprint(f'mv{self.mvid}  {self.title}下载失败')
+            mfprint('若出现错误："10053, 你的主机中的软件中止了一个已建立的连接。",请尝试使用代理，详细方法请查看 https://github.com/imouup/Mfuns_tools')
             self.downloadSuccessed = False
 
     def upload(self,rel):
@@ -302,8 +303,8 @@ mfprint('（1）直接回车或输入0，所有视频都会被尝试转直链')
 mfprint('或者：')
 mfprint('（2）输入单个序号或mv号[例如：1 或 mv35124]，只有指定的视频会被转为直链')
 mfprint('（3）输入多个序号或mv号，用英文逗号分隔[例如：1,2,3,]')
-mfprint('注意：序号和mv号可以混用；逗号必须是英文逗号!')
-mfprint('注意：如果某个视频之前已经转过直链但是保留了外链，目前这个脚本还无法识别，非常抱歉 >_<')
+mfprint('\033[31m注意：序号和mv号可以混用；逗号必须是英文逗号!\033[0m')
+
 
 # 用户输入需要转直链的视频，得到索引的列表p_list
 p_range = input('【Mftools】请输入需要转直链的视频: ')
@@ -339,7 +340,10 @@ for index in p_list:
         if mvid == video.mvid:
             refunc_di[index] = video
 
+dl_list = p_list.copy()
+
 if len(refunc_di) > 0:
+    mfprint('')
     mfprint('注意：以下视频已经转过直链啦，不过当时保留了外链作为分P：')
     mfprint('|{:^3}|{:^8}| 标题'.format('序号','mv号'))
     k = 1
@@ -348,7 +352,7 @@ if len(refunc_di) > 0:
         mfprint('{:^7}{:<10}{}'.format(k, f'mv{video.mvid}', video.title))
         k +=1
 
-    dl_list = p_list.copy()
+
     if retain_ex_link == False:
         mfprint('请问您希望对它们执行什么操作：')
         mfprint('A 跳过，不再操作')
@@ -373,6 +377,8 @@ if len(refunc_di) > 0:
 
 
 # 下载并上传视频
+if 'dl_list' not in dir():
+    dl_list=[]
 if len(p_list) > 0:
     # 下载视频
     getVideo(dl_list,panv_list)
@@ -393,9 +399,11 @@ if len(p_list) > 0:
             if video.uploaded == True:
                 video.onlydelete()
                 writelog(video, retain_ex_link, log_path)
+                time.sleep(1)
             else:
                 writelog(video,retain_ex_link,log_path)
                 video.upload(retain_ex_link)
+                time.sleep(1)
 
 
 mfprint('操作完成，请去检查一下有没有问题吧')

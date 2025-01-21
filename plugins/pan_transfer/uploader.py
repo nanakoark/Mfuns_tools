@@ -1,3 +1,5 @@
+import time
+
 from tqdm import tqdm
 import src.createTab
 from DrissionPage import SessionPage
@@ -43,10 +45,11 @@ def upload(f_path):
                     'aria-valuenow')
                 pbar.n = int(now)
                 pbar.refresh()
-                mfprint('请稍等片刻，正在确认是否已经上传完成~')
+
         except Exception:
             pbar.n = 100
             pbar.refresh()
+        mfprint('请稍等片刻，正在确认是否已经上传完成~')
         tab.listen.wait(3)
     mfprint('上传成功')
 
@@ -99,6 +102,7 @@ def main(video,retain_external_link = True):
                 print(f'P{k}使用直链，不再上传')
             else:
                 upload(f_path[1])
+            time.sleep(1)
     else:
         upload(video.f_path)
 
