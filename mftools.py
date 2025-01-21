@@ -2,7 +2,6 @@ import os
 import subprocess
 import sys
 import time
-# 设置sys.path
 sys.path.append(r'.\src')
 sys.path.append(r'.\site-packages')
 sys.path.append(r'.\plugins\pan_transfer')
@@ -32,6 +31,7 @@ env['PYTHONPATH'] = currentdir #设置环境变量
 
 
 # 检查是否正在使用虚拟环境
+## 打包release时请删除该部分
 venv_python = os.path.join(currentdir, ".venv", "Scripts", "python.exe")
 if venv_python not in sys.executable:
     print(r"请使用以下命令激活虚拟环境后重写运行脚本: .venv\Scripts\activate")
@@ -60,4 +60,5 @@ if had_activated:
         continue_ = True if  userinput in ('Y','y') else False
 
 print('再见喵~')
+
 
