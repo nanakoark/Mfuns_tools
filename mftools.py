@@ -20,7 +20,7 @@ r'''
 
 print('Checking~')
 time.sleep(1)
-print('Version:0.1.0')
+print('Version:0.1.2')
 
 # 设置工作目录为当前py文件所在目录
 currentdir = os.path.dirname(os.path.abspath(__file__))
