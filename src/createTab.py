@@ -10,7 +10,7 @@ class CreateTab():
         Settings.set_language('zh_cn')
 
         # 创建配置对象,设置隐藏浏览器界面
-        self.co = ChromiumOptions(ini_path=ini_path).set_paths(local_port=9100,user_data_path='{}'.format(getPath(['data','userdata'],dir_num)))
+        self.co = ChromiumOptions(ini_path=ini_path).set_paths(local_port=9100,user_data_path=r'.\data\userdata')
 
     def headless(self,TorF):
         self.co.headless(TorF)
