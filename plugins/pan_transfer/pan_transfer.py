@@ -1,7 +1,6 @@
 import os
 import sys
-# 设置sys.path
-sys.path.append(r'.\src')
+sys.path.append(r'.\src')   # 设置sys.path
 sys.path.append(r'.\site-packages')
 sys.path.append(r'.\plugins\pan_transfer')
 import time
@@ -264,7 +263,7 @@ def readlog(log_path):
 ## 主代码块
 
 # 创建标签页
-ini_path = None
+ini_path = r'.\plugins\pan_transfer\chromeConfig.ini'
 createtab = CreateTab(ini_path,dir_num)
 #createtab.headless()
 tab = createtab.create()
