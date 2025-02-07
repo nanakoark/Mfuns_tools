@@ -49,12 +49,15 @@ if had_activated:
     while continue_:
         mfprint('功能列表如下：')
         print('1.网盘外链转直链')
+        print('2.签到')
         print('...(没有更多了)...')
         print()
         time.sleep(0.7)
         userinput = input('【Mftools】请选择功能:')
         if userinput == '1':
             subprocess.run([venv_python, 'plugins/pan_transfer/pan_transfer.py'],cwd=currentdir,env=env)
+        if userinput == '2':
+            subprocess.run([venv_python, 'plugins/water/water.py'],cwd=currentdir,env=env)
 
         userinput = input('【Mftools】请问还需要进行其它操作吗？[Y/N]: ')
         continue_ = True if  userinput in ('Y','y') else False

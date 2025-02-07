@@ -5,16 +5,11 @@ from src.login import login
 # 创建页面
 ini_path = None
 createtab = CreateTab(ini_path)
-createtab.headless()
+createtab.headless(False)
 tab = createtab.create()
 
-#获取用户名和密码
-username = input('请输入你的mfuns账号：')
-password = input("请输入你的密码(密码已隐藏~)：")
-    #最后要记得换成getpass
-
 # 登录
-login(tab,username,password)
+login(tab)
 
 # 定义签到函数
 def signin(tab):
