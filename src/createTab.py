@@ -1,5 +1,8 @@
 from DrissionPage.common import Settings
 from DrissionPage import Chromium
+import sys
+sys.path.append('.\\')# 设置sys.path
+sys.path.append(r'.\site-packages')
 from DrissionPage import ChromiumOptions
 from src.file_store import getPath
 
@@ -11,6 +14,7 @@ class CreateTab():
 
         # 创建配置对象,设置隐藏浏览器界面
         self.co = ChromiumOptions(ini_path=ini_path).set_paths(local_port=9100,user_data_path=r'.\data\userdata')
+        # self.co.set_browser_path(r'.\data\Chrome\chrome.exe') # 取消注释后使用data目录下的便携式Chrome，你也可以改成其他浏览器的路径
 
     def headless(self,TorF):
         self.co.headless(TorF)

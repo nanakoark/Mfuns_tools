@@ -1,5 +1,8 @@
 import time
 from tqdm import tqdm
+import sys
+sys.path.append('.\\')# 设置sys.path
+sys.path.append(r'.\site-packages')
 import src.createTab
 from DrissionPage import SessionPage
 from src.cookies import getCookies,getAccessToken

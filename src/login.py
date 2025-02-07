@@ -1,4 +1,7 @@
 import getpass
+import sys
+sys.path.append('.\\')# 设置sys.path
+sys.path.append(r'.\site-packages')
 from src.mf_print import mfprint
 
 def login(tab):

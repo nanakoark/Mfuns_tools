@@ -2,7 +2,7 @@ import os
 import subprocess
 import sys
 import time
-sys.path.append(r'.\src')
+sys.path.append('.\\')
 sys.path.append(r'.\site-packages')
 sys.path.append(r'.\plugins\pan_transfer')
 from src.mf_print import mfprint

@@ -1,4 +1,7 @@
 import os
+import sys
+sys.path.append('.\\')# 设置sys.path
+sys.path.append(r'.\site-packages')
 from asyncio import as_completed
 from datetime import datetime as dt
 import requests
